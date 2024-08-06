@@ -51,10 +51,9 @@
 		4182862B2C627B2B0022E621 /* MinimalDo */ = {
 			isa = PBXGroup;
 			children = (
+				4182863A2C627B450022E621 /* Assets */,
 				4182862C2C627B2B0022E621 /* MinimalDoApp.swift */,
-				4182862E2C627B2B0022E621 /* ContentView.swift */,
-				418286302C627B2C0022E621 /* Assets.xcassets */,
-				418286322C627B2C0022E621 /* Preview Content */,
+				4182863B2C627B510022E621 /* Views */,
 			);
 			path = MinimalDo;
 			sourceTree = "<group>";
@@ -65,6 +64,23 @@
 				418286332C627B2C0022E621 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4182863A2C627B450022E621 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				418286322C627B2C0022E621 /* Preview Content */,
+				418286302C627B2C0022E621 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		4182863B2C627B510022E621 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4182862E2C627B2B0022E621 /* ContentView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,15 +287,15 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MinimalDo/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"MinimalDo/Assets/Preview Content\"";
 				DEVELOPMENT_TEAM = 8JC7C732LB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -300,15 +316,15 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MinimalDo/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"MinimalDo/Assets/Preview Content\"";
 				DEVELOPMENT_TEAM = 8JC7C732LB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

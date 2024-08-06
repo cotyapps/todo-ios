@@ -1,10 +1,3 @@
-//
-//  MinimalDoApp.swift
-//  MinimalDo
-//
-//  Created by Filippo Tosetto on 06/08/2024.
-//
-
 import SwiftUI
 
 @main
