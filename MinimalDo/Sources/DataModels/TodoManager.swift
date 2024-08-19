@@ -19,10 +19,10 @@ class TodoManager: ObservableObject {
     }
 
     func removeTodo(_ todo: TodoItem, from listId: UUID) {
-        guard let listIndex = lists.firstIndex(where: { $0.id == listId }) else {
-            return
-        }
-        guard let todoIndex = lists[listIndex].todoItems.firstIndex(where: { $0.id == todo.id }) else {
+        guard
+            let listIndex = lists.firstIndex(where: { $0.id == listId }),
+            let todoIndex = lists[listIndex].todoItems.firstIndex(where: { $0.id == todo.id })
+        else {
             return
         }
         lists[listIndex].todoItems.remove(at: todoIndex)
