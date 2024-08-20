@@ -3,6 +3,10 @@ import Foundation
 class TodoManager: ObservableObject {
     @Published var lists: [TodoList] = []
 
+    init(lists: [TodoList] = []) {
+        self.lists = lists
+    }
+
     func addList(_ list: TodoList) {
         lists.append(list)
     }
