@@ -4,13 +4,16 @@ struct TodoItem: Codable, Identifiable {
     let id: UUID
     var title: String
     var isDone: Bool
+    var listId: UUID
     var description: String?
     var dueDate: Date?
 
-    init(id: UUID = UUID(), title: String, isDone: Bool = false, description: String? = nil, dueDate: Date? = nil) {
+    init(id: UUID = UUID(), title: String, isDone: Bool = false, listId: UUID,
+         description: String? = nil, dueDate: Date? = nil) {
         self.id = id
         self.title = title
         self.isDone = isDone
+        self.listId = listId
         self.description = description
         self.dueDate = dueDate
     }

@@ -1,14 +1,17 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var todoManager = TodoManager.mockManager
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        Text("Hello, world!")
+            .onAppear {
+                printMockData()
+                addMoreMockData()
+                printMockData()
+                removeMockList(listName: "Learning")
+                printMockData()
+            }
     }
 }
 
