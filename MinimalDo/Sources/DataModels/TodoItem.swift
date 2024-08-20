@@ -7,7 +7,7 @@ struct TodoItem: Codable, Identifiable {
     var description: String?
     var dueDate: Date?
 
-    init(id: UUID = UUID(), title: String, isDone: Bool = false, listId: UUID,
+    init(id: UUID = UUID(), title: String, isDone: Bool = false,
          description: String? = nil, dueDate: Date? = nil) {
         self.id = id
         self.title = title
