@@ -4,7 +4,6 @@ struct TodoItem: Codable, Identifiable {
     let id: UUID
     var title: String
     var isDone: Bool
-    var listId: UUID
     var description: String?
     var dueDate: Date?
 
@@ -13,7 +12,6 @@ struct TodoItem: Codable, Identifiable {
         self.id = id
         self.title = title
         self.isDone = isDone
-        self.listId = listId
         self.description = description
         self.dueDate = dueDate
     }

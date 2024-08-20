@@ -1,17 +1,10 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var todoManager = TodoManager.mockManager
+    @StateObject private var todoManager = TodoManager()
 
     var body: some View {
         Text("Hello, world!")
-            .onAppear {
-                printMockData()
-                addMoreMockData()
-                printMockData()
-                removeMockList(listName: "Learning")
-                printMockData()
-            }
     }
 }
 
