@@ -1,14 +1,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var todoManager = TodoManager()
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        Text("Hello, world!")
     }
 }
 
