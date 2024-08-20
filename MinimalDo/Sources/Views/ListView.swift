@@ -3,21 +3,19 @@ import SwiftUI
 struct ListView: View {
     let todoList: TodoList
     var body: some View {
-        NavigationStack {
-            List {
-                ForEach(todoList.todoItems) { todoItem in
-                    HStack {
-                        Image(systemName: todoItem.isDone
-                              ? "largecircle.fill.circle"
-                              : "circle")
-                          .imageScale(.large)
-                          .foregroundColor(.accentColor)
-                        Text(todoItem.title)
-                      }
-                }
+        List {
+            ForEach(todoList.todoItems) { todoItem in
+                HStack {
+                    Image(systemName: todoItem.isDone
+                          ? "largecircle.fill.circle"
+                          : "circle")
+                      .imageScale(.large)
+                      .foregroundColor(.accentColor)
+                    Text(todoItem.title)
+                  }
             }
-            .navigationTitle("\(todoList.name)")
         }
+        .navigationTitle("\(todoList.name)")
     }
 }
 
