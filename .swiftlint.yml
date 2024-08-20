@@ -1,0 +1,16 @@
+disabled_rules:
+- todo
+- nesting
+- trailing_comma
+- function_parameter_count
+- type_name
+- force_cast
+- multiple_closures_with_trailing_closure
+
+cyclomatic_complexity:
+  ignores_case_statements: true
+
+excluded:
+  - Pods
+  - build
+  - fastlane
