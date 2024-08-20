@@ -1,10 +1,27 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var todoManager = TodoManager()
+    @StateObject var todoManager = TodoManager()
+
+    init() {
+        let manager = TodoManager()
+        manager.lists = TodoList.mockTodoLists
+        _todoManager = StateObject(wrappedValue: manager)
+    }
 
     var body: some View {
-        Text("Hello, world!")
+        NavigationStack {
+            List {
+                ForEach(todoManager.lists) { todoList in
+                    NavigationLink {
+                        ListView(todoList: todoList)
+                    } label: {
+                        Text("\(todoList.name)")
+                    }
+                }
+            }
+            .navigationTitle("Minimal Todo")
+        }
     }
 }
 
