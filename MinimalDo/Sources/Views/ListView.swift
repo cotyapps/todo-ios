@@ -1,18 +1,12 @@
 import SwiftUI
 
 struct ListView: View {
-    let todoList: TodoList
+    @Binding var todoList: TodoList
+
     var body: some View {
         List {
-            ForEach(todoList.todoItems) { todoItem in
-                HStack {
-                    Image(systemName: todoItem.isDone
-                          ? "largecircle.fill.circle"
-                          : "circle")
-                      .imageScale(.large)
-                      .foregroundColor(.accentColor)
-                    Text(todoItem.title)
-                  }
+            ForEach($todoList.todoItems) { $todoItem in
+                ElementView(todoItem: $todoItem)
             }
         }
         .navigationTitle("\(todoList.name)")
@@ -20,6 +14,8 @@ struct ListView: View {
 }
 
 #Preview {
-    let personalList = TodoList.mockTodoLists[1]
-    return ListView(todoList: personalList)
+    @State var personalList = TodoList.mockTodoLists[1]
+    return NavigationStack {
+        ListView(todoList: $personalList)
+    }
 }

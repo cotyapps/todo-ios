@@ -6,11 +6,9 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(todoManager.lists) { todoList in
-                    NavigationLink {
-                        ListView(todoList: todoList)
-                    } label: {
-                        Text("\(todoList.name)")
+                ForEach($todoManager.lists) { $todoList in
+                    NavigationLink(destination: ListView(todoList: $todoList)) {
+                        Text(todoList.name)
                     }
                 }
             }
