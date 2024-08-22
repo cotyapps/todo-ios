@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var todoManager = TodoManager(lists: TodoList.mockTodoLists)
+    @State private var todoManager = TodoManager(lists: TodoList.mockTodoLists)
 
     var body: some View {
         NavigationStack {
