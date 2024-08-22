@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ListView: View {
     @Binding var todoList: TodoList
+    @State private var showingAddItem = false
 
     var body: some View {
         List {
@@ -10,6 +11,14 @@ struct ListView: View {
             }
         }
         .navigationTitle("\(todoList.name)")
+        .toolbar {
+            Button("Add Item", systemImage: "plus") {
+                showingAddItem = true
+            }
+        }
+        .sheet(isPresented: $showingAddItem) {
+            AddItemView(todoList: $todoList)
+        }
     }
 }
 
