@@ -30,13 +30,7 @@ struct AddItemView: View {
             .navigationTitle("Add Todo")
             .toolbar {
                 Button("Save") {
-                    guard !title.isEmpty else { return }
-                    let todoItem = TodoItem(
-                        title: title,
-                        description: description.isEmpty ? nil : description,
-                        dueDate: hasDueDate ? dueDate : nil
-                    )
-                    todoList.todoItems.append(todoItem)
+                    addTodoItem(title: title, description: description, dueDate: dueDate)
                     dismiss()
                 }
                 .disabled(title.isEmpty)
@@ -46,6 +40,17 @@ struct AddItemView: View {
                 }
             }
         }
+    }
+
+    func addTodoItem(title: String, description: String, dueDate: Date) {
+        guard !title.isEmpty else { return }
+        let todoItem = TodoItem(
+            title: title,
+            description: description.isEmpty ? nil : description,
+            dueDate: hasDueDate ? dueDate : nil
+        )
+        todoList.todoItems.append(todoItem)
+        dismiss()
     }
 }
 
