@@ -50,7 +50,6 @@ struct AddItemView: View {
             dueDate: hasDueDate ? dueDate : nil
         )
         todoList.todoItems.append(todoItem)
-        dismiss()
     }
 }
 
