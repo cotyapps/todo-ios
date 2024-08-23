@@ -6,7 +6,7 @@ struct ElementView: View {
 
     var body: some View {
         Button(action: {
-            completeTodoItem()
+            Task { await completeTodoItem() }
         }) {
             HStack {
                 Image(systemName: isCompleting ? "largecircle.fill.circle" : "circle")
@@ -38,14 +38,20 @@ struct ElementView: View {
         .opacity(isCompleting ? 0.5 : 1.0)
     }
 
-    private func completeTodoItem() {
+    private func completeTodoItem() async {
         withAnimation(.easeInOut(duration: 0.2)) {
             isCompleting = true
         }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        do {
+            try await Task.sleep(for: .seconds(1.0))
             withAnimation(.easeInOut(duration: 0.2)) {
                 todoItem.isDone.toggle()
+            }
+        } catch {
+            print("Error occurred: \(error)")
+            withAnimation(.easeInOut(duration: 0.2)) {
+                isCompleting = false
             }
         }
     }
