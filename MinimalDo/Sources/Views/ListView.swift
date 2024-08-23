@@ -2,23 +2,34 @@ import SwiftUI
 
 struct ListView: View {
     @Binding var todoList: TodoList
-    @State private var showingAddItem = false
+    @State private var showingAddEditItem = false
+    @State private var editingItem: TodoItem?
 
     var body: some View {
         List {
             ForEach($todoList.todoItems.filter { !$0.wrappedValue.isDone }) { $todoItem in
-                ElementView(todoItem: $todoItem)
+                Button(action: {
+                    openTodoItem(chosenTodo: todoItem)
+                }) {
+                    ElementView(todoItem: $todoItem)
+                }
             }
         }
         .navigationTitle("\(todoList.name)")
         .toolbar {
             Button("Add Item", systemImage: "plus") {
-                showingAddItem = true
+                editingItem = nil
+                showingAddEditItem = true
             }
         }
-        .sheet(isPresented: $showingAddItem) {
-            AddItemView(todoList: $todoList)
+        .sheet(isPresented: $showingAddEditItem) {
+            AddEditItemView(todoList: $todoList, editingItem: editingItem)
         }
+    }
+
+    private func openTodoItem(chosenTodo: TodoItem) {
+        editingItem = chosenTodo
+        showingAddEditItem.toggle()
     }
 }
 
