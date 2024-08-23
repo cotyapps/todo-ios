@@ -43,16 +43,10 @@ struct ElementView: View {
             isCompleting = true
         }
 
-        do {
-            try await Task.sleep(for: .seconds(1.0))
-            withAnimation(.easeInOut(duration: 0.2)) {
-                todoItem.isDone.toggle()
-            }
-        } catch {
-            print("Error occurred: \(error)")
-            withAnimation(.easeInOut(duration: 0.2)) {
-                isCompleting = false
-            }
+        try? await Task.sleep(for: .seconds(1.0))
+
+        withAnimation(.easeInOut(duration: 0.2)) {
+            todoItem.isDone.toggle()
         }
     }
 }
