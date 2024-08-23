@@ -1,7 +1,8 @@
 import Foundation
 
-class TodoManager: ObservableObject {
-    @Published var lists: [TodoList] = []
+@Observable
+class TodoManager {
+    var lists: [TodoList] = []
 
     init(lists: [TodoList] = []) {
         self.lists = lists
