@@ -3,41 +3,35 @@ import SwiftUI
 struct ElementView: View {
     @Binding var todoItem: TodoItem
     @State private var isCompleting = false
-    @Binding var showingEditItem: Bool
-    @Binding var editingItem: TodoItem?
 
     var body: some View {
-        Button(action: {
-            Task { await completeTodoItem() }
-        }) {
-            HStack {
+        HStack {
+            Button(action: {
+                Task { await completeTodoItem() }
+            }) {
                 Image(systemName: isCompleting ? "largecircle.fill.circle" : "circle")
                     .imageScale(.large)
                     .foregroundColor(.accentColor)
-                VStack(alignment: .leading) {
-                    Text(todoItem.title)
-                        .font(.headline)
-                        .foregroundColor(isCompleting ? .gray : .black)
-                        .onTapGesture {
-                            editingItem = todoItem
-                            showingEditItem = true
-                        }
-                    if let description = todoItem.description, !description.isEmpty {
-                        Text(description)
-                            .font(.subheadline)
+            }
+            VStack(alignment: .leading) {
+                Text(todoItem.title)
+                    .font(.headline)
+                    .foregroundColor(isCompleting ? .gray : .black)
+                if let description = todoItem.description, !description.isEmpty {
+                    Text(description)
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                }
+                if let dueDate = todoItem.dueDate {
+                    HStack {
+                        Image(systemName: "calendar")
+                            .imageScale(.small)
+                            .foregroundColor(.secondary)
+                        Text(dueDate, style: .date)
+                            .font(.footnote)
                             .foregroundColor(.gray)
                     }
-                    if let dueDate = todoItem.dueDate {
-                        HStack {
-                            Image(systemName: "calendar")
-                                .imageScale(.small)
-                                .foregroundColor(.secondary)
-                            Text(dueDate, style: .date)
-                                .font(.footnote)
-                                .foregroundColor(.gray)
-                        }
-                        .padding(.top, 2)
-                    }
+                    .padding(.top, 2)
                 }
             }
         }

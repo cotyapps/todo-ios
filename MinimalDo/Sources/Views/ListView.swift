@@ -8,22 +8,28 @@ struct ListView: View {
     var body: some View {
         List {
             ForEach($todoList.todoItems.filter { !$0.wrappedValue.isDone }) { $todoItem in
-                ElementView(todoItem: $todoItem, showingEditItem: $showingAddEditItem, editingItem: $editingItem)
+                Button(action: {
+                    openTodoItem(chosenTodo: todoItem)
+                }) {
+                    ElementView(todoItem: $todoItem)
+                }
             }
         }
         .navigationTitle("\(todoList.name)")
         .toolbar {
             Button("Add Item", systemImage: "plus") {
+                editingItem = nil
                 showingAddEditItem = true
             }
         }
         .sheet(isPresented: $showingAddEditItem) {
-            if let editingItem = editingItem {
-                AddEditItemView(todoList: $todoList, editingItem: editingItem)
-            } else {
-                AddEditItemView(todoList: $todoList)
-            }
+            AddEditItemView(todoList: $todoList, editingItem: editingItem)
         }
+    }
+
+    private func openTodoItem(chosenTodo: TodoItem) {
+        editingItem = chosenTodo
+        showingAddEditItem.toggle()
     }
 }
 
