@@ -6,7 +6,7 @@ struct ListView: View {
 
     var body: some View {
         List {
-            ForEach($todoList.todoItems) { $todoItem in
+            ForEach($todoList.todoItems.filter { !$0.wrappedValue.isDone }) { $todoItem in
                 ElementView(todoItem: $todoItem)
             }
         }
