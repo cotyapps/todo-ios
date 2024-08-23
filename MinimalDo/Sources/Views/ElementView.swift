@@ -3,6 +3,8 @@ import SwiftUI
 struct ElementView: View {
     @Binding var todoItem: TodoItem
     @State private var isCompleting = false
+    @Binding var showingEditItem: Bool
+    @Binding var editingItem: TodoItem?
 
     var body: some View {
         Button(action: {
@@ -16,6 +18,10 @@ struct ElementView: View {
                     Text(todoItem.title)
                         .font(.headline)
                         .foregroundColor(isCompleting ? .gray : .black)
+                        .onTapGesture {
+                            editingItem = todoItem
+                            showingEditItem = true
+                        }
                     if let description = todoItem.description, !description.isEmpty {
                         Text(description)
                             .font(.subheadline)
