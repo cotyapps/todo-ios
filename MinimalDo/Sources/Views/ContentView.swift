@@ -5,24 +5,17 @@ struct ContentView: View {
     @State private var showingNewListAlert = false
     @State private var newListName = ""
     @State private var showingDeleteAlert = false
-    @State private var listToDelete: IndexSet?
 
     var body: some View {
         NavigationStack {
             List {
-                ForEach(Array($todoManager.lists.enumerated()), id: \.offset) { index, $todoList in
+                ForEach($todoManager.lists) { $todoList in
                     NavigationLink(destination: ListView(todoList: $todoList)) {
                         Text(todoList.name)
-                            .swipeActions(allowsFullSwipe: true) {
-                                Button {
-                                    listToDelete = IndexSet(integer: index)
-                                    showingDeleteAlert = true
-                                } label: {
-                                    Image(systemName: "trash.fill")
-                                }
-                                .tint(.red)
-                            }
                     }
+                }
+                .onDelete { offsets in
+                    deleteList(at: offsets)
                 }
             }
             .navigationTitle("Minimal Todo")
@@ -39,12 +32,6 @@ struct ContentView: View {
                     }
                 }
             }
-            .alert("Confirm delete?", isPresented: $showingDeleteAlert) {
-                Button("Cancel", role: .cancel) {}
-                Button("Delete", role: .destructive) {
-                    deleteList(at: listToDelete)
-                }
-            }
         }
     }
 
@@ -56,10 +43,7 @@ struct ContentView: View {
         todoManager.addList(newTodoList)
     }
 
-    private func deleteList(at offsets: IndexSet?) {
-        guard let offsets = offsets else {
-            return
-        }
+    private func deleteList(at offsets: IndexSet) {
         todoManager.removeList(at: offsets)
     }
 }
