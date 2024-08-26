@@ -4,6 +4,7 @@ struct ContentView: View {
     @State private var todoManager = TodoManager(lists: TodoList.mockTodoLists)
     @State private var showingNewListAlert = false
     @State private var newListName = ""
+    @State private var showingDeleteAlert = false
 
     var body: some View {
         NavigationStack {
@@ -12,6 +13,9 @@ struct ContentView: View {
                     NavigationLink(destination: ListView(todoList: $todoList)) {
                         Text(todoList.name)
                     }
+                }
+                .onDelete { offsets in
+                    deleteList(at: offsets)
                 }
             }
             .navigationTitle("Minimal Todo")
@@ -37,6 +41,10 @@ struct ContentView: View {
         }
         let newTodoList = TodoList(name: newListName)
         todoManager.addList(newTodoList)
+    }
+
+    private func deleteList(at offsets: IndexSet) {
+        todoManager.removeList(at: offsets)
     }
 }
 
