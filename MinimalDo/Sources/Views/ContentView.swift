@@ -24,9 +24,6 @@ struct ContentView: View {
                     TextField("Enter list name", text: $newListName)
                     Button("Cancel", role: .cancel) {}
                     Button("Confirm") {
-                        guard !newListName.isEmpty else {
-                            return
-                        }
                         confirmAddList()
                     }
                 }
@@ -35,6 +32,9 @@ struct ContentView: View {
     }
 
     private func confirmAddList() {
+        guard !newListName.isEmpty else {
+            return
+        }
         let newTodoList = TodoList(name: newListName)
         todoManager.addList(newTodoList)
     }
