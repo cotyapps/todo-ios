@@ -1,6 +1,6 @@
 import Foundation
 
-public protocol StorageService {
-    func saveItems<T: Codable>(_ items: [T])
-    func loadItems<T: Codable>() -> [T]
+protocol StorageService {
+    func saveItems(_ items: [TodoList])
+    func loadItems() -> [TodoList]
 }
