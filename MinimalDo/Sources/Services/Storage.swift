@@ -22,9 +22,8 @@ public struct JSONStorageService: StorageService {
 
     func saveItems(_ items: [TodoList]) {
         let encoder = JSONEncoder()
-        let itemsDictionary = Dictionary(uniqueKeysWithValues: items.map { ($0.id, $0) })
         do {
-            let data = try encoder.encode(itemsDictionary)
+            let data = try encoder.encode(items)
             if let fileURL = getFilePath() {
                 if !fileManager.fileExists(atPath: fileURL.path) {
                     fileManager.createFile(atPath: fileURL.path, contents: data, attributes: nil)
@@ -44,8 +43,8 @@ public struct JSONStorageService: StorageService {
         do {
             let data = try Data(contentsOf: fileURL)
             let decoder = JSONDecoder()
-            let todoListsDict = try decoder.decode([String: TodoList].self, from: data)
-            return Array(todoListsDict.values)
+            let todoLists = try decoder.decode([TodoList].self, from: data)
+            return todoLists
         } catch {
             print("Cannot load data from JSON file: \(error)")
             return []
