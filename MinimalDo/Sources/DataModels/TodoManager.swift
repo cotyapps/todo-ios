@@ -12,6 +12,11 @@ class TodoManager {
         lists.append(list)
     }
 
+    func changeListName(at index: IndexSet, newName: String) {
+        guard let index = index.first else { return }
+        lists[index].name = newName
+    }
+
     func removeList(at index: IndexSet) {
         lists.remove(atOffsets: index)
     }
