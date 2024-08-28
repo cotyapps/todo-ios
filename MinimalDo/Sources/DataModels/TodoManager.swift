@@ -13,7 +13,7 @@ class TodoManager {
 
     func loadList() {
         let loadedItems = storageService.loadItems()
-        self.lists = Array(loadedItems.values)
+        self.lists = loadedItems
     }
 
     func addList(_ list: TodoList) {

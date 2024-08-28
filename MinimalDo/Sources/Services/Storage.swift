@@ -2,18 +2,19 @@ import Foundation
 
 protocol StorageService {
     func saveItems(_ items: [TodoList])
-    func loadItems() -> [String: TodoList]
+    func loadItems() -> [TodoList]
 }
 
-public class JSONStorageService: StorageService {
+public struct JSONStorageService: StorageService {
     private let fileName: String
+    private let fileManager = FileManager.default
 
     init(fileName: String) {
         self.fileName = fileName
     }
 
     private func getFilePath() -> URL? {
-        guard let filePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+        guard let filePath = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
             return nil
         }
         return filePath.appendingPathComponent(fileName)
@@ -25,8 +26,8 @@ public class JSONStorageService: StorageService {
         do {
             let data = try encoder.encode(itemsDictionary)
             if let fileURL = getFilePath() {
-                if !FileManager.default.fileExists(atPath: fileURL.path) {
-                    FileManager.default.createFile(atPath: fileURL.path, contents: data, attributes: nil)
+                if !fileManager.fileExists(atPath: fileURL.path) {
+                    fileManager.createFile(atPath: fileURL.path, contents: data, attributes: nil)
                 } else {
                     try data.write(to: fileURL)
                 }
@@ -36,18 +37,18 @@ public class JSONStorageService: StorageService {
         }
     }
 
-    func loadItems() -> [String: TodoList] {
+    func loadItems() -> [TodoList] {
         guard let fileURL = getFilePath() else {
-            return [:]
+            return []
         }
         do {
             let data = try Data(contentsOf: fileURL)
             let decoder = JSONDecoder()
             let todoListsDict = try decoder.decode([String: TodoList].self, from: data)
-            return todoListsDict
+            return Array(todoListsDict.values)
         } catch {
             print("Cannot load data from JSON file: \(error)")
-            return [:]
+            return []
         }
     }
 }
