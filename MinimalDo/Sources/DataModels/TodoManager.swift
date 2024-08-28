@@ -4,8 +4,16 @@ import Foundation
 class TodoManager {
     var lists: [TodoList] = []
 
-    init(lists: [TodoList] = []) {
+    private let storageService: StorageService
+
+    init(lists: [TodoList] = [], storageService: StorageService = JSONStorageService(fileName: "TodoLists.json")) {
         self.lists = lists
+        self.storageService = storageService
+    }
+
+    func loadList() {
+        let loadedItems = storageService.loadItems()
+        self.lists = Array(loadedItems.values)
     }
 
     func addList(_ list: TodoList) {
