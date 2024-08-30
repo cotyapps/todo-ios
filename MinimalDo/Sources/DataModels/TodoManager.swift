@@ -19,6 +19,10 @@ class TodoManager {
     func addList(_ list: TodoList) {
         lists.append(list)
     }
+    
+    func countLists() -> Int {
+        return lists.count
+    }
 
     func changeListName(at index: IndexSet, newName: String) {
         guard let index = index.first else { return }

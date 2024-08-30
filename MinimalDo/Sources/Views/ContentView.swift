@@ -5,6 +5,7 @@ struct ContentView: View {
     @State private var showingListAlert = false
     @State private var newListName = ""
     @State private var chosenList: IndexSet?
+    @State private var displayPaywall = false
 
     var body: some View {
         NavigationStack {
@@ -36,7 +37,11 @@ struct ContentView: View {
                 Button("New list", systemImage: "plus") {
                     newListName = ""
                     chosenList = nil
-                    showingListAlert = true
+                    if todoManager.countLists() >= 1 && !checkIfSubscribe() {
+                        displayPaywall.toggle()
+                    } else {
+                        showingListAlert = true
+                    }
                 }
 
             }
@@ -50,8 +55,10 @@ struct ContentView: View {
                         confirmAddList()
                     }
                 }
-
             }
+            .sheet(isPresented: $displayPaywall, content: {
+                PayWallView(displayPaywall: $displayPaywall)
+            })
         }
     }
 

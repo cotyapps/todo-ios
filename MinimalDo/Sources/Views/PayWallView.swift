@@ -1,12 +1,8 @@
 import SwiftUI
 
 struct PayWallView: View {
-    enum SubscriptionOption {
-        case monthly
-        case yearly
-    }
-
-    @State var chosenOption = SubscriptionOption.monthly
+    @Binding var displayPaywall: Bool
+    @State var chosenOption = SubscriptionStatus.monthly
 
     var body: some View {
         NavigationView {
@@ -25,7 +21,7 @@ struct PayWallView: View {
                 Spacer()
                 VStack(spacing: 15) {
                     Button(action: {
-                        chosenOption = SubscriptionOption.monthly
+                        chosenOption = SubscriptionStatus.monthly
                     }) {
                         HStack {
                             VStack(alignment: .leading) {
@@ -42,15 +38,16 @@ struct PayWallView: View {
                         }
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .background(chosenOption == SubscriptionOption.monthly ? Color.blue.opacity(0.2) : Color.white)
+                        .background(chosenOption == SubscriptionStatus.monthly ? Color.blue.opacity(0.2) : Color.white)
                         .cornerRadius(20)
                         .overlay(
                             RoundedRectangle(cornerRadius: 20)
-                                .stroke(chosenOption == SubscriptionOption.monthly ? Color.blue : Color.gray.opacity(0.5), lineWidth: 2)
+                                .stroke(chosenOption == SubscriptionStatus.monthly 
+                                        ? Color.blue : Color.gray.opacity(0.5), lineWidth: 2)
                         )
                     }
                     Button(action: {
-                        chosenOption = SubscriptionOption.yearly
+                        chosenOption = SubscriptionStatus.yearly
                     }) {
                         HStack {
                             VStack(alignment: .leading) {
@@ -66,11 +63,12 @@ struct PayWallView: View {
                         }
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .background(chosenOption == SubscriptionOption.yearly ? Color.blue.opacity(0.2) : Color.white)
+                        .background(chosenOption == SubscriptionStatus.yearly ? Color.blue.opacity(0.2) : Color.white)
                         .cornerRadius(20)
                         .overlay(
                             RoundedRectangle(cornerRadius: 20)
-                                .stroke(chosenOption == SubscriptionOption.yearly ? Color.blue : Color.gray.opacity(0.5), lineWidth: 2)
+                                .stroke(chosenOption == SubscriptionStatus.yearly 
+                                        ? Color.blue : Color.gray.opacity(0.5), lineWidth: 2)
                         )
                     }
                 }
@@ -103,7 +101,7 @@ struct PayWallView: View {
             .edgesIgnoringSafeArea(.all)
             .toolbar {
                 Button("Close") {
-                    print("Close")
+                    displayPaywall.toggle()
                 }
                 .font(.headline)
                 .foregroundColor(.gray)
@@ -113,5 +111,6 @@ struct PayWallView: View {
 }
 
 #Preview {
-    PayWallView()
+    @State var displayPaywall = true
+    return PayWallView(displayPaywall: $displayPaywall)
 }
