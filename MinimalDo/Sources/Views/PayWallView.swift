@@ -42,7 +42,7 @@ struct PayWallView: View {
                         .cornerRadius(20)
                         .overlay(
                             RoundedRectangle(cornerRadius: 20)
-                                .stroke(chosenOption == SubscriptionStatus.monthly 
+                                .stroke(chosenOption == SubscriptionStatus.monthly
                                         ? Color.blue : Color.gray.opacity(0.5), lineWidth: 2)
                         )
                     }
@@ -52,8 +52,9 @@ struct PayWallView: View {
                         HStack {
                             VStack(alignment: .leading) {
                                 Text("Secondary Product")
-                                    .font(.footnote)
-                                    .foregroundColor(.gray)
+                                    .font(.subheadline)
+                                    .fontWeight(.semibold)
+                                    .foregroundStyle(.black)
                                 Text("$ 12.99 / year")
                                     .font(.title3)
                                     .fontWeight(.semibold)
@@ -67,7 +68,7 @@ struct PayWallView: View {
                         .cornerRadius(20)
                         .overlay(
                             RoundedRectangle(cornerRadius: 20)
-                                .stroke(chosenOption == SubscriptionStatus.yearly 
+                                .stroke(chosenOption == SubscriptionStatus.yearly
                                         ? Color.blue : Color.gray.opacity(0.5), lineWidth: 2)
                         )
                     }

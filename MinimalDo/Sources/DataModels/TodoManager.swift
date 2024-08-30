@@ -19,7 +19,7 @@ class TodoManager {
     func addList(_ list: TodoList) {
         lists.append(list)
     }
-    
+
     func countLists() -> Int {
         return lists.count
     }
