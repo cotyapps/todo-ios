@@ -25,17 +25,32 @@ class TodoManager {
         storageService.saveItems(lists)
     }
 
+    func storeList() {
+        storageService.saveItems(self.lists)
+    }
+
+    func canAddList() -> Bool {
+        return countLists() < 1 || checkIfSubscribe()
+    }
+
     func addList(_ list: TodoList) {
         lists.append(list)
+        storeList()
+    }
+
+    func countLists() -> Int {
+        return lists.count
     }
 
     func changeListName(at index: IndexSet, newName: String) {
         guard let index = index.first else { return }
         lists[index].name = newName
+        storeList()
     }
 
     func removeList(at index: IndexSet) {
         lists.remove(atOffsets: index)
+        storeList()
     }
 
     func addTodo(_ todo: TodoItem, to listId: UUID) {
@@ -43,6 +58,7 @@ class TodoManager {
             return
         }
         lists[index].todoItems.append(todo)
+        storeList()
     }
 
     func removeTodo(_ todo: TodoItem, from listId: UUID) {
@@ -53,5 +69,6 @@ class TodoManager {
             return
         }
         lists[listIndex].todoItems.remove(at: todoIndex)
+        storeList()
     }
 }
