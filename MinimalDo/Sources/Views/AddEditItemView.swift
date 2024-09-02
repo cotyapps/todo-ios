@@ -24,9 +24,13 @@ struct AddEditItemView: View {
                 Toggle("Due on", isOn: $hasDueDate)
 
                 if hasDueDate {
-                    DatePicker(selection: $dueDate, in: ...Date.now, displayedComponents: .date) {
-                        Text("")
-                    }
+                    DatePicker(
+                        "",
+                        selection: $dueDate,
+                        in: Date()...,
+                        displayedComponents: [.date]
+                    )
+                    .datePickerStyle(GraphicalDatePickerStyle())
                 }
             }
             .onAppear {

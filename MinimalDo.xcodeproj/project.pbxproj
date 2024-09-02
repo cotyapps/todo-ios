@@ -28,6 +28,7 @@
 		36E9BAB42C81FB4F00389DCB /* TodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BA432C738D4E00389DCB /* TodoList.swift */; };
 		36E9BAB52C81FB5100389DCB /* TodoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BA452C738E8700389DCB /* TodoManager.swift */; };
 		36E9BAB62C81FB5C00389DCB /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BA912C7DD6BD00389DCB /* Storage.swift */; };
+		36E9BABF2C85EC6700389DCB /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BA972C81BF1E00389DCB /* Subscription.swift */; };
 		4182862D2C627B2B0022E621 /* MinimalDoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4182862C2C627B2B0022E621 /* MinimalDoApp.swift */; };
 		4182862F2C627B2B0022E621 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4182862E2C627B2B0022E621 /* ContentView.swift */; };
 		418286312C627B2C0022E621 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 418286302C627B2C0022E621 /* Assets.xcassets */; };
@@ -343,6 +344,7 @@
 				36E9BAA72C81EE3500389DCB /* MinimalDoWidget.swift in Sources */,
 				36E9BAB32C81FB4B00389DCB /* TodoItem.swift in Sources */,
 				36E9BAA52C81EE3500389DCB /* MinimalDoWidgetBundle.swift in Sources */,
+				36E9BABF2C85EC6700389DCB /* Subscription.swift in Sources */,
 				36E9BAB42C81FB4F00389DCB /* TodoList.swift in Sources */,
 				36E9BAB62C81FB5C00389DCB /* Storage.swift in Sources */,
 			);
