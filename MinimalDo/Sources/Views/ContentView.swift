@@ -37,13 +37,12 @@ struct ContentView: View {
                 Button("New list", systemImage: "plus") {
                     newListName = ""
                     chosenList = nil
-                    if todoManager.countLists() >= 1 && !checkIfSubscribe() {
+                    if todoManager.checkAddList() {
                         displayPaywall.toggle()
                     } else {
                         showingListAlert = true
                     }
                 }
-
             }
             .alert(chosenList == nil ? "Add new todo list" : "Edit list name", isPresented: $showingListAlert) {
                 TextField("Enter new list name", text: $newListName)
