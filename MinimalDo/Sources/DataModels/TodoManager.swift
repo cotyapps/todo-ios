@@ -21,9 +21,17 @@ class TodoManager {
         storageService.saveItems(self.lists)
     }
 
+    func canAddList() -> Bool {
+        return countLists() < 1 || checkIfSubscribe()
+    }
+
     func addList(_ list: TodoList) {
         lists.append(list)
         storeList()
+    }
+
+    func countLists() -> Int {
+        return lists.count
     }
 
     func changeListName(at index: IndexSet, newName: String) {
