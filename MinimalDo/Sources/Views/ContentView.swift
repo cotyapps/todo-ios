@@ -37,7 +37,7 @@ struct ContentView: View {
                 Button("New list", systemImage: "plus") {
                     newListName = ""
                     chosenList = nil
-                    if todoManager.checkAddList() {
+                    if !todoManager.canAddList() {
                         displayPaywall.toggle()
                     } else {
                         showingListAlert = true

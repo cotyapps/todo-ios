@@ -15,8 +15,8 @@ class TodoManager {
         let loadedItems = storageService.loadItems()
         self.lists = loadedItems
     }
-    
-    func checkAddList() -> Bool {
+
+    func canAddList() -> Bool {
         return countLists() < 1 || checkIfSubscribe()
     }
 
