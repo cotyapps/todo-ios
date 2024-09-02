@@ -1,4 +1,5 @@
 import SwiftUI
+import UserNotifications
 
 struct AddEditItemView: View {
     @Environment(\.dismiss) var dismiss
@@ -40,12 +41,14 @@ struct AddEditItemView: View {
             .navigationTitle(editingItem == nil ? "Add Todo" : "Edit Todo")
             .toolbar {
                 Button("Save") {
-                    if let editingItem = editingItem {
-                        updateTodoItem(editingItem: editingItem)
-                    } else {
-                        addTodoItem()
+                    Task {
+                        if let editingItem = editingItem {
+                            updateTodoItem(editingItem: editingItem)
+                        } else {
+                            await addTodoItem()
+                        }
+                        dismiss()
                     }
-                    dismiss()
                 }
                 .disabled(title.isEmpty)
 
@@ -56,7 +59,7 @@ struct AddEditItemView: View {
         }
     }
 
-    func addTodoItem() {
+    func addTodoItem() async {
         guard !title.isEmpty else { return }
         let todoItem = TodoItem(
             title: title,
@@ -64,6 +67,23 @@ struct AddEditItemView: View {
             dueDate: hasDueDate ? dueDate : nil
         )
         todoList.todoItems.append(todoItem)
+
+        if hasDueDate {
+            let notiAllowed = await isNotificationAllowed()
+            if !notiAllowed {
+                do {
+                    let success = try await UNUserNotificationCenter.current()
+                        .requestAuthorization(options: [.alert, .badge, .sound])
+                    if success {
+                        scheduleNotification(for: todoItem)
+                    }
+                } catch {
+                    print("Notification permission error: \(error.localizedDescription)")
+                }
+            } else {
+                scheduleNotification(for: todoItem)
+            }
+        }
     }
 
     func updateTodoItem(editingItem: TodoItem) {
@@ -75,4 +95,22 @@ struct AddEditItemView: View {
         }
     }
 
+    func scheduleNotification(for item: TodoItem) {
+        let content = UNMutableNotificationContent()
+        content.title = item.title
+        content.body = item.description ?? ""
+        content.sound = .default
+
+        if let dueDate = item.dueDate {
+            var triggerDate = Calendar.current.dateComponents([.year, .month, .day],
+                                                              from: dueDate)
+
+            triggerDate.hour = 9
+
+            let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
+
+            let request = UNNotificationRequest(identifier: item.id.uuidString, content: content, trigger: trigger)
+            UNUserNotificationCenter.current().add(request)
+        }
+    }
 }
