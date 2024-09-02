@@ -5,6 +5,7 @@ struct ContentView: View {
     @State private var showingListAlert = false
     @State private var newListName = ""
     @State private var chosenList: IndexSet?
+    @State private var displayPaywall = false
 
     var body: some View {
         NavigationStack {
@@ -36,9 +37,12 @@ struct ContentView: View {
                 Button("New list", systemImage: "plus") {
                     newListName = ""
                     chosenList = nil
-                    showingListAlert = true
+                    if !todoManager.canAddList() {
+                        displayPaywall.toggle()
+                    } else {
+                        showingListAlert = true
+                    }
                 }
-
             }
             .alert(chosenList == nil ? "Add new todo list" : "Edit list name", isPresented: $showingListAlert) {
                 TextField("Enter new list name", text: $newListName)
@@ -50,8 +54,10 @@ struct ContentView: View {
                         confirmAddList()
                     }
                 }
-
             }
+            .sheet(isPresented: $displayPaywall, content: {
+                PayWallView(displayPaywall: $displayPaywall)
+            })
         }
     }
 

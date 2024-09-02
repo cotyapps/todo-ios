@@ -16,8 +16,16 @@ class TodoManager {
         self.lists = loadedItems
     }
 
+    func canAddList() -> Bool {
+        return countLists() < 1 || checkIfSubscribe()
+    }
+
     func addList(_ list: TodoList) {
         lists.append(list)
+    }
+
+    func countLists() -> Int {
+        return lists.count
     }
 
     func changeListName(at index: IndexSet, newName: String) {
