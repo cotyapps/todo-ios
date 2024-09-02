@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var todoManager = TodoManager(lists: TodoList.mockTodoLists)
+    @State private var todoManager = TodoManager()
     @State private var showingListAlert = false
     @State private var newListName = ""
     @State private var chosenList: IndexSet?

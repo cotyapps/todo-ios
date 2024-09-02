@@ -1,19 +1,28 @@
 import Foundation
+import WidgetKit
 
 @Observable
 class TodoManager {
-    var lists: [TodoList] = []
+    var lists: [TodoList] = [] {
+        didSet {
+            saveList()
+            WidgetCenter.shared.reloadAllTimelines()
+        }
+    }
 
     private let storageService: StorageService
 
-    init(lists: [TodoList] = [], storageService: StorageService = JSONStorageService(fileName: "TodoLists.json")) {
-        self.lists = lists
+    init(storageService: StorageService = JSONStorageService()) {
         self.storageService = storageService
+        loadList()
     }
 
     func loadList() {
-        let loadedItems = storageService.loadItems()
-        self.lists = loadedItems
+        lists = storageService.loadItems()
+    }
+
+    func saveList() {
+        storageService.saveItems(lists)
     }
 
     func addList(_ list: TodoList) {

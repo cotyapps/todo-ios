@@ -5,46 +5,34 @@ protocol StorageService {
     func loadItems() -> [TodoList]
 }
 
-public struct JSONStorageService: StorageService {
-    private let fileName: String
-    private let fileManager = FileManager.default
+struct JSONStorageService: StorageService {
+    private let containerURL: URL
 
-    init(fileName: String) {
-        self.fileName = fileName
-    }
-
-    private func getFilePath() -> URL? {
-        guard let filePath = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            return nil
+    init() {
+        let appGroupIdentifier = "group.com.kovalee.MinimalDo"
+        guard let url = FileManager.default.containerURL(
+            forSecurityApplicationGroupIdentifier: appGroupIdentifier
+        ) else {
+            fatalError("Failed to get shared container URL")
         }
-        return filePath.appendingPathComponent(fileName)
+        self.containerURL = url.appendingPathComponent("TodoLists.json")
     }
 
     func saveItems(_ items: [TodoList]) {
         let encoder = JSONEncoder()
         do {
             let data = try encoder.encode(items)
-            if let fileURL = getFilePath() {
-                if !fileManager.fileExists(atPath: fileURL.path) {
-                    fileManager.createFile(atPath: fileURL.path, contents: data, attributes: nil)
-                } else {
-                    try data.write(to: fileURL)
-                }
-            }
+            try data.write(to: containerURL)
         } catch {
-            print("Cannot save data to JSON file")
+            print("Cannot save data to JSON file: \(error)")
         }
     }
 
     func loadItems() -> [TodoList] {
-        guard let fileURL = getFilePath() else {
-            return []
-        }
         do {
-            let data = try Data(contentsOf: fileURL)
+            let data = try Data(contentsOf: containerURL)
             let decoder = JSONDecoder()
-            let todoLists = try decoder.decode([TodoList].self, from: data)
-            return todoLists
+            return try decoder.decode([TodoList].self, from: data)
         } catch {
             print("Cannot load data from JSON file: \(error)")
             return []

@@ -72,6 +72,7 @@
 		36E9BAA82C81EE3700389DCB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		36E9BAAA2C81EE3700389DCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		36E9BAB22C81FA4A00389DCB /* MinimalDo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MinimalDo.entitlements; sourceTree = "<group>"; };
+		36E9BABB2C85BC9F00389DCB /* MinimalDoWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MinimalDoWidgetExtension.entitlements; sourceTree = SOURCE_ROOT; };
 		418286292C627B2B0022E621 /* MinimalDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinimalDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4182862C2C627B2B0022E621 /* MinimalDoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimalDoApp.swift; sourceTree = "<group>"; };
 		4182862E2C627B2B0022E621 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -141,6 +142,7 @@
 		36E9BAA32C81EE3500389DCB /* MinimalDoWidget */ = {
 			isa = PBXGroup;
 			children = (
+				36E9BABB2C85BC9F00389DCB /* MinimalDoWidgetExtension.entitlements */,
 				36E9BAA42C81EE3500389DCB /* MinimalDoWidgetBundle.swift */,
 				36E9BAA62C81EE3500389DCB /* MinimalDoWidget.swift */,
 				36E9BAA82C81EE3700389DCB /* Assets.xcassets */,
@@ -370,6 +372,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = MinimalDoWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8JC7C732LB;
@@ -399,6 +402,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = MinimalDoWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8JC7C732LB;
