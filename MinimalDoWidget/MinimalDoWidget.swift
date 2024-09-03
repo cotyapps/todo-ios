@@ -9,6 +9,7 @@ struct Provider: AppIntentTimelineProvider {
         todoManager.loadList()
         let list = configuration.list ?? todoManager.getWidgetLists().first ?? WidgetList(
             id: "No lists available",
+            index: -1,
             list: TodoList(name: "No lists available")
         )
         return Timeline(
@@ -21,6 +22,7 @@ struct Provider: AppIntentTimelineProvider {
         todoManager.loadList()
         let list = configuration.list ?? todoManager.getWidgetLists().first ?? WidgetList(
             id: "No lists available",
+            index: -1,
             list: TodoList(name: "No lists available")
         )
         return ListEntry(date: .now, widgetList: list)
@@ -29,7 +31,9 @@ struct Provider: AppIntentTimelineProvider {
     func placeholder(in context: Context) -> ListEntry {
         return ListEntry(
             date: .now,
-            widgetList: WidgetList(id: "Placeholder id", list: TodoList(name: "Place holder list"))
+            widgetList: WidgetList(id: "Placeholder id",
+                                   index: -1,
+                                   list: TodoList(name: "Place holder list"))
         )
     }
 }
@@ -66,11 +70,11 @@ struct MinimalDoWidgetEntryView: View {
                     .font(.title3)
                     .bold()
             }
-            ForEach(entry.widgetList.list.todoItems.filter({ !$0.isDone }).prefix(3)) { item in
+            ForEach(Array(entry.widgetList.list.todoItems
+                .filter({ !$0.isDone }).prefix(3).enumerated()),
+                    id: \.offset) { index, item in
                 HStack {
-                    Button(action: {
-                        toggleItem(item, in: entry.widgetList.list)
-                    }) {
+                    Button(intent: ToggleItemIntent(todoIndex: index, listIndex: entry.widgetList.index)) {
                         Image(systemName: item.isDone ? "checkmark.circle.fill" : "circle")
                             .foregroundColor(.gray)
                     }
@@ -105,11 +109,11 @@ struct MinimalDoWidgetEntryView: View {
                 .frame(width: geometry.size.width / 4)
 
                 VStack(alignment: .leading) {
-                    ForEach(entry.widgetList.list.todoItems.filter({ !$0.isDone }).prefix(4)) { item in
+                    ForEach(Array(entry.widgetList.list.todoItems
+                        .filter({ !$0.isDone }).prefix(4).enumerated()),
+                            id: \.offset) { index, item in
                         HStack {
-                            Button(action: {
-                                toggleItem(item, in: entry.widgetList.list)
-                            }) {
+                            Button(intent: ToggleItemIntent(todoIndex: index, listIndex: entry.widgetList.index)) {
                                 Image(systemName: item.isDone ? "checkmark.circle.fill" : "circle")
                                     .foregroundColor(.gray)
                             }
@@ -134,10 +138,6 @@ struct MinimalDoWidgetEntryView: View {
         }
         .padding(.horizontal, 10)
     }
-
-    func toggleItem(_ item: TodoItem, in list: TodoList) {
-        print("Done for \(item.title)")
-    }
 }
 
 struct MinimalDoWidget: Widget {
@@ -160,7 +160,7 @@ struct MinimalDoWidget: Widget {
 #Preview(as: .systemMedium) {
     MinimalDoWidget()
 } timeline: {
-    ListEntry(date: .now, widgetList: WidgetList(id: "1", list: TodoList(name: "Personal Tasks", todoItems: [
+    ListEntry(date: .now, widgetList: WidgetList(id: "1", index: 0, list: TodoList(name: "Personal Tasks", todoItems: [
         TodoItem(title: "Buy groceries", isDone: false),
         TodoItem(title: "Finish project report", isDone: true),
         TodoItem(title: "Call Mom", isDone: false),
@@ -170,7 +170,7 @@ struct MinimalDoWidget: Widget {
         TodoItem(title: "Clean the house", isDone: true)
     ])))
     ListEntry(date: .now.addingTimeInterval(3600),
-              widgetList: WidgetList(id: "2", list: TodoList(name: "Work Tasks", todoItems: [
+              widgetList: WidgetList(id: "2", index: 1, list: TodoList(name: "Work Tasks", todoItems: [
         TodoItem(title: "Email client", isDone: false),
         TodoItem(title: "Team meeting", isDone: true),
         TodoItem(title: "Prepare presentation", isDone: false),
@@ -182,7 +182,7 @@ struct MinimalDoWidget: Widget {
 #Preview(as: .systemSmall) {
     MinimalDoWidget()
 } timeline: {
-    ListEntry(date: .now, widgetList: WidgetList(id: "3", list: TodoList(name: "Quick Tasks", todoItems: [
+    ListEntry(date: .now, widgetList: WidgetList(id: "3", index: 0, list: TodoList(name: "Quick Tasks", todoItems: [
         TodoItem(title: "Water plants", isDone: false),
         TodoItem(title: "Reply to texts", isDone: true),
         TodoItem(title: "Take out trash", isDone: false),

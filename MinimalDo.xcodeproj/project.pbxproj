@@ -31,6 +31,8 @@
 		36E9BABF2C85EC6700389DCB /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BA972C81BF1E00389DCB /* Subscription.swift */; };
 		36E9BAC52C85FA8100389DCB /* SelectListIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BAC42C85FA8100389DCB /* SelectListIntent.swift */; };
 		36E9BAC62C85FA8100389DCB /* SelectListIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BAC42C85FA8100389DCB /* SelectListIntent.swift */; };
+		36E9BACC2C87169100389DCB /* ToggleItemIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BACB2C87169100389DCB /* ToggleItemIntent.swift */; };
+		36E9BACD2C87169100389DCB /* ToggleItemIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BACB2C87169100389DCB /* ToggleItemIntent.swift */; };
 		4182862D2C627B2B0022E621 /* MinimalDoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4182862C2C627B2B0022E621 /* MinimalDoApp.swift */; };
 		4182862F2C627B2B0022E621 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4182862E2C627B2B0022E621 /* ContentView.swift */; };
 		418286312C627B2C0022E621 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 418286302C627B2C0022E621 /* Assets.xcassets */; };
@@ -83,6 +85,7 @@
 		36E9BAB22C81FA4A00389DCB /* MinimalDo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MinimalDo.entitlements; sourceTree = "<group>"; };
 		36E9BABB2C85BC9F00389DCB /* MinimalDoWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MinimalDoWidgetExtension.entitlements; sourceTree = SOURCE_ROOT; };
 		36E9BAC42C85FA8100389DCB /* SelectListIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectListIntent.swift; sourceTree = "<group>"; };
+		36E9BACB2C87169100389DCB /* ToggleItemIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleItemIntent.swift; sourceTree = "<group>"; };
 		418286292C627B2B0022E621 /* MinimalDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinimalDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4182862C2C627B2B0022E621 /* MinimalDoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimalDoApp.swift; sourceTree = "<group>"; };
 		4182862E2C627B2B0022E621 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -160,6 +163,7 @@
 				36E9BAA82C81EE3700389DCB /* Assets.xcassets */,
 				36E9BAAA2C81EE3700389DCB /* Info.plist */,
 				36E9BAC42C85FA8100389DCB /* SelectListIntent.swift */,
+				36E9BACB2C87169100389DCB /* ToggleItemIntent.swift */,
 			);
 			path = MinimalDoWidget;
 			sourceTree = "<group>";
@@ -346,6 +350,7 @@
 			files = (
 				36E9BAB52C81FB5100389DCB /* TodoManager.swift in Sources */,
 				36E9BAA72C81EE3500389DCB /* MinimalDoWidget.swift in Sources */,
+				36E9BACD2C87169100389DCB /* ToggleItemIntent.swift in Sources */,
 				36E9BAB32C81FB4B00389DCB /* TodoItem.swift in Sources */,
 				36E9BAA52C81EE3500389DCB /* MinimalDoWidgetBundle.swift in Sources */,
 				36E9BABF2C85EC6700389DCB /* Subscription.swift in Sources */,
@@ -361,6 +366,7 @@
 			files = (
 				36E9BA462C738E8700389DCB /* TodoManager.swift in Sources */,
 				36E9BA532C7734B200389DCB /* AddEditItemView.swift in Sources */,
+				36E9BACC2C87169100389DCB /* ToggleItemIntent.swift in Sources */,
 				36E9BA512C75D4C500389DCB /* ElementView.swift in Sources */,
 				36E9BA492C74887D00389DCB /* MockData.swift in Sources */,
 				4182862F2C627B2B0022E621 /* ContentView.swift in Sources */,

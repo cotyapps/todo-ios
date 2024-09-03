@@ -20,21 +20,42 @@ struct JSONStorageService: StorageService {
 
     func saveItems(_ items: [TodoList]) {
         let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
         do {
             let data = try encoder.encode(items)
-            try data.write(to: containerURL)
+            try data.write(to: containerURL, options: .atomic)
+            print("Successfully saved data to \(containerURL.path)")
         } catch {
-            print("Cannot save data to JSON file: \(error)")
+            print("Error saving data to JSON file: \(error)")
         }
     }
 
     func loadItems() -> [TodoList] {
         do {
+            if !FileManager.default.fileExists(atPath: containerURL.path) {
+                print("File does not exist at \(containerURL.path). Returning empty array.")
+                return []
+            }
+
             let data = try Data(contentsOf: containerURL)
+
+            guard !data.isEmpty else {
+                print("File is empty at \(containerURL.path). Returning empty array.")
+                return []
+            }
+
             let decoder = JSONDecoder()
-            return try decoder.decode([TodoList].self, from: data)
+            let items = try decoder.decode([TodoList].self, from: data)
+            print("Successfully loaded \(items.count) items from \(containerURL.path)")
+            return items
         } catch {
-            print("Cannot load data from JSON file: \(error)")
+            print("Error loading data from JSON file: \(error)")
+            if error is DecodingError {
+                if let data = try? Data(contentsOf: containerURL),
+                   let dataString = String(data: data, encoding: .utf8) {
+                    print("Raw JSON data:\n\(dataString)")
+                }
+            }
             return []
         }
     }

@@ -18,24 +18,19 @@ class TodoManager {
     }
 
     func loadList() {
-        lists = storageService.loadItems()
+        self.lists = storageService.loadItems()
     }
 
     func saveList() {
-        storageService.saveItems(lists)
-    }
-
-    func storeList() {
         storageService.saveItems(self.lists)
     }
 
     func canAddList() -> Bool {
-        return countLists() < 1 || checkIfSubscribe()
+        return countLists() < 3 || checkIfSubscribe()
     }
 
     func addList(_ list: TodoList) {
         lists.append(list)
-        storeList()
     }
 
     func countLists() -> Int {
@@ -45,17 +40,15 @@ class TodoManager {
     func changeListName(at index: IndexSet, newName: String) {
         guard let index = index.first else { return }
         lists[index].name = newName
-        storeList()
     }
 
     func removeList(at index: IndexSet) {
         lists.remove(atOffsets: index)
-        storeList()
     }
 
     func getWidgetLists() -> [WidgetList] {
-        return lists.map { todoList in
-            WidgetList(id: todoList.name, list: todoList)
+        return Array(lists.enumerated()).map { index, todoList in
+            WidgetList(id: String(index), index: index, list: todoList)
         }
     }
 
@@ -64,7 +57,6 @@ class TodoManager {
             return
         }
         lists[index].todoItems.append(todo)
-        storeList()
     }
 
     func removeTodo(_ todo: TodoItem, from listId: UUID) {
@@ -75,6 +67,18 @@ class TodoManager {
             return
         }
         lists[listIndex].todoItems.remove(at: todoIndex)
-        storeList()
+    }
+
+    func toggleTodo(todoIndex: Int, listIndex: Int) {
+        guard listIndex >= 0 && listIndex < lists.count else {
+            print("Invalid list index")
+            return
+        }
+        let todoItems = lists[listIndex].todoItems
+        guard todoIndex >= 0 && todoIndex < todoItems.count else {
+            print("Invalid todo index")
+            return
+        }
+        lists[listIndex].todoItems[todoIndex].isDone.toggle()
     }
 }
