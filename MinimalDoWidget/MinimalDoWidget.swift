@@ -2,39 +2,41 @@ import WidgetKit
 import SwiftUI
 import Foundation
 
-struct Provider: TimelineProvider {
+struct Provider: AppIntentTimelineProvider {
     let todoManager = TodoManager()
 
-    func placeholder(in context: Context) -> SimpleEntry {
-        let placeholderList = TodoList(name: "Placeholder List", todoItems: [
-            TodoItem(title: "Sample Task 1", isDone: false),
-            TodoItem(title: "Sample Task 2", isDone: true)
-        ])
-        return SimpleEntry(date: Date(), todoList: placeholderList)
+    func timeline(for configuration: SelectListIntent, in context: Context) async -> Timeline<ListEntry> {
+        todoManager.loadList()
+        let list = configuration.list ?? todoManager.getWidgetLists().first ?? WidgetList(
+            id: "No lists available",
+            list: TodoList(name: "No lists available")
+        )
+        return Timeline(
+            entries: [ListEntry(date: .now, widgetList: list)],
+            policy: .atEnd
+        )
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> Void) {
+    func snapshot(for configuration: SelectListIntent, in context: Context) async -> ListEntry {
         todoManager.loadList()
-        let snapshotList = todoManager.lists.first ?? TodoList(name: "No Lists Available")
-        let entry = SimpleEntry(date: Date(), todoList: snapshotList)
-        completion(entry)
+        let list = configuration.list ?? todoManager.getWidgetLists().first ?? WidgetList(
+            id: "No lists available",
+            list: TodoList(name: "No lists available")
+        )
+        return ListEntry(date: .now, widgetList: list)
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
-        todoManager.loadList()
-
-        let currentDate = Date()
-        let entryList = todoManager.lists.first ?? TodoList(name: "No Lists Available")
-
-        let entry = SimpleEntry(date: currentDate, todoList: entryList)
-        let timeline = Timeline(entries: [entry], policy: .atEnd)
-        completion(timeline)
+    func placeholder(in context: Context) -> ListEntry {
+        return ListEntry(
+            date: .now,
+            widgetList: WidgetList(id: "Placeholder id", list: TodoList(name: "Place holder list"))
+        )
     }
 }
 
-struct SimpleEntry: TimelineEntry {
+struct ListEntry: TimelineEntry {
     let date: Date
-    let todoList: TodoList
+    let widgetList: WidgetList
 }
 
 struct MinimalDoWidgetEntryView: View {
@@ -55,19 +57,19 @@ struct MinimalDoWidgetEntryView: View {
     var smallWidgetView: some View {
         VStack(alignment: .leading) {
             HStack {
-                Text(entry.todoList.name)
+                Text(entry.widgetList.list.name)
                     .font(.subheadline)
                     .bold()
                     .foregroundColor(.accentColor)
                 Spacer()
-                Text("\(entry.todoList.todoItems.count)")
+                Text("\(entry.widgetList.list.todoItems.count)")
                     .font(.title3)
                     .bold()
             }
-            ForEach(entry.todoList.todoItems.filter({ !$0.isDone }).prefix(3)) { item in
+            ForEach(entry.widgetList.list.todoItems.filter({ !$0.isDone }).prefix(3)) { item in
                 HStack {
                     Button(action: {
-                        toggleItem(item, in: entry.todoList)
+                        toggleItem(item, in: entry.widgetList.list)
                     }) {
                         Image(systemName: item.isDone ? "checkmark.circle.fill" : "circle")
                             .foregroundColor(.gray)
@@ -89,10 +91,10 @@ struct MinimalDoWidgetEntryView: View {
             HStack(spacing: 20) {
                 VStack(alignment: .leading) {
                     Spacer()
-                    Text("\(entry.todoList.todoItems.count)")
+                    Text("\(entry.widgetList.list.todoItems.count)")
                         .font(.title3)
                         .bold()
-                    Text(entry.todoList.name)
+                    Text(entry.widgetList.list.name)
                         .font(.subheadline)
                         .bold()
                         .foregroundColor(.accentColor)
@@ -103,10 +105,10 @@ struct MinimalDoWidgetEntryView: View {
                 .frame(width: geometry.size.width / 4)
 
                 VStack(alignment: .leading) {
-                    ForEach(entry.todoList.todoItems.filter({ !$0.isDone }).prefix(4)) { item in
+                    ForEach(entry.widgetList.list.todoItems.filter({ !$0.isDone }).prefix(4)) { item in
                         HStack {
                             Button(action: {
-                                toggleItem(item, in: entry.todoList)
+                                toggleItem(item, in: entry.widgetList.list)
                             }) {
                                 Image(systemName: item.isDone ? "checkmark.circle.fill" : "circle")
                                     .foregroundColor(.gray)
@@ -122,7 +124,7 @@ struct MinimalDoWidgetEntryView: View {
                         }
                         .padding(.top, 2)
                     }
-                    if entry.todoList.todoItems.filter({ !$0.isDone }).isEmpty {
+                    if entry.widgetList.list.todoItems.filter({ !$0.isDone }).isEmpty {
                         Text("All tasks completed")
                             .font(.subheadline)
                     }
@@ -142,12 +144,15 @@ struct MinimalDoWidget: Widget {
     let kind: String = "MinimalDoWidget"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider()) { entry in
+        AppIntentConfiguration(
+            kind: kind,
+            intent: SelectListIntent.self,
+            provider: Provider()
+        ) { entry in
             MinimalDoWidgetEntryView(entry: entry)
-                .containerBackground(.fill.tertiary, for: .widget)
         }
-        .configurationDisplayName("Todo Items")
-        .description("This is a Todo List.")
+        .configurationDisplayName("Todo List Widget")
+        .description("Displays a todo list")
         .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
@@ -155,7 +160,7 @@ struct MinimalDoWidget: Widget {
 #Preview(as: .systemMedium) {
     MinimalDoWidget()
 } timeline: {
-    SimpleEntry(date: .now, todoList: TodoList(name: "Personal Tasks with a lot of task", todoItems: [
+    ListEntry(date: .now, widgetList: WidgetList(id: "1", list: TodoList(name: "Personal Tasks", todoItems: [
         TodoItem(title: "Buy groceries", isDone: false),
         TodoItem(title: "Finish project report", isDone: true),
         TodoItem(title: "Call Mom", isDone: false),
@@ -163,24 +168,26 @@ struct MinimalDoWidget: Widget {
         TodoItem(title: "Read a book", isDone: true),
         TodoItem(title: "Workout", isDone: false),
         TodoItem(title: "Clean the house", isDone: true)
-    ]))
-    SimpleEntry(date: .now.addingTimeInterval(3600), todoList: TodoList(name: "Work Tasks", todoItems: [
+    ])))
+    ListEntry(date: .now.addingTimeInterval(3600),
+              widgetList: WidgetList(id: "2", list: TodoList(name: "Work Tasks", todoItems: [
         TodoItem(title: "Email client", isDone: false),
         TodoItem(title: "Team meeting", isDone: true),
         TodoItem(title: "Prepare presentation", isDone: false),
         TodoItem(title: "Review budget", isDone: false),
         TodoItem(title: "Write code documentation", isDone: true)
-    ]))
+    ])))
 }
+
 #Preview(as: .systemSmall) {
     MinimalDoWidget()
 } timeline: {
-    SimpleEntry(date: .now, todoList: TodoList(name: "Quick Tasks", todoItems: [
-        TodoItem(title: "Water plants with a lot of water", isDone: false),
+    ListEntry(date: .now, widgetList: WidgetList(id: "3", list: TodoList(name: "Quick Tasks", todoItems: [
+        TodoItem(title: "Water plants", isDone: false),
         TodoItem(title: "Reply to texts", isDone: true),
         TodoItem(title: "Take out trash", isDone: false),
-        TodoItem(title: "Prepare presentation", isDone: false),
-        TodoItem(title: "Review budget", isDone: false),
-        TodoItem(title: "Write code documentation", isDone: true)
-    ]))
+        TodoItem(title: "Prepare lunch", isDone: false),
+        TodoItem(title: "Check emails", isDone: false),
+        TodoItem(title: "Set alarm", isDone: true)
+    ])))
 }

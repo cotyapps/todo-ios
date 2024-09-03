@@ -53,6 +53,12 @@ class TodoManager {
         storeList()
     }
 
+    func getWidgetLists() -> [WidgetList] {
+        return lists.map { todoList in
+            WidgetList(id: todoList.name, list: todoList)
+        }
+    }
+
     func addTodo(_ todo: TodoItem, to listId: UUID) {
         guard let index = lists.firstIndex(where: { $0.id == listId }) else {
             return
