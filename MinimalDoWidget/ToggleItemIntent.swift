@@ -20,7 +20,6 @@ struct ToggleItemIntent: AppIntent {
 
     func perform() async throws -> some IntentResult {
         let todoManager = TodoManager()
-        print("func perform() async throws -> some IntentResult {")
         todoManager.toggleTodo(todoIndex: todoIndex, listIndex: listIndex)
         return .result()
     }
