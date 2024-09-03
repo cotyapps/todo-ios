@@ -50,12 +50,6 @@ struct JSONStorageService: StorageService {
             return items
         } catch {
             print("Error loading data from JSON file: \(error)")
-            if error is DecodingError {
-                if let data = try? Data(contentsOf: containerURL),
-                   let dataString = String(data: data, encoding: .utf8) {
-                    print("Raw JSON data:\n\(dataString)")
-                }
-            }
             return []
         }
     }

@@ -66,7 +66,7 @@ struct MinimalDoWidgetEntryView: View {
                     .bold()
                     .foregroundColor(.accentColor)
                 Spacer()
-                Text("\(entry.widgetList.list.todoItems.count)")
+                Text("\(entry.widgetList.list.todoItems.filter { !$0.isDone }.count)")
                     .font(.title3)
                     .bold()
             }
@@ -95,7 +95,7 @@ struct MinimalDoWidgetEntryView: View {
             HStack(spacing: 20) {
                 VStack(alignment: .leading) {
                     Spacer()
-                    Text("\(entry.widgetList.list.todoItems.count)")
+                    Text("\(entry.widgetList.list.todoItems.filter { !$0.isDone }.count)")
                         .font(.title3)
                         .bold()
                     Text(entry.widgetList.list.name)

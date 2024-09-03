@@ -74,11 +74,20 @@ class TodoManager {
             print("Invalid list index")
             return
         }
-        let todoItems = lists[listIndex].todoItems
-        guard todoIndex >= 0 && todoIndex < todoItems.count else {
+
+        let allTodoItems = lists[listIndex].todoItems
+        let undoneTodoItems = allTodoItems.filter { !$0.isDone }
+
+        guard todoIndex >= 0 && todoIndex < undoneTodoItems.count else {
             print("Invalid todo index")
             return
         }
-        lists[listIndex].todoItems[todoIndex].isDone.toggle()
+
+        if let fullListIndex = allTodoItems.firstIndex(where: { $0.id == undoneTodoItems[todoIndex].id }) {
+            lists[listIndex].todoItems[fullListIndex].isDone.toggle()
+            saveList()
+        } else {
+            print("Couldn't find the todo item in the full list")
+        }
     }
 }
