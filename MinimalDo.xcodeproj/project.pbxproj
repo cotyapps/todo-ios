@@ -33,6 +33,7 @@
 		36E9BAC62C85FA8100389DCB /* SelectListIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BAC42C85FA8100389DCB /* SelectListIntent.swift */; };
 		36E9BACC2C87169100389DCB /* ToggleItemIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BACB2C87169100389DCB /* ToggleItemIntent.swift */; };
 		36E9BACD2C87169100389DCB /* ToggleItemIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BACB2C87169100389DCB /* ToggleItemIntent.swift */; };
+		36E9BACE2C8758CD00389DCB /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BA482C74887D00389DCB /* MockData.swift */; };
 		4182862D2C627B2B0022E621 /* MinimalDoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4182862C2C627B2B0022E621 /* MinimalDoApp.swift */; };
 		4182862F2C627B2B0022E621 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4182862E2C627B2B0022E621 /* ContentView.swift */; };
 		418286312C627B2C0022E621 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 418286302C627B2C0022E621 /* Assets.xcassets */; };
@@ -357,6 +358,7 @@
 				36E9BAB42C81FB4F00389DCB /* TodoList.swift in Sources */,
 				36E9BAB62C81FB5C00389DCB /* Storage.swift in Sources */,
 				36E9BAC62C85FA8100389DCB /* SelectListIntent.swift in Sources */,
+				36E9BACE2C8758CD00389DCB /* MockData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

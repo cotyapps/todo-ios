@@ -11,10 +11,26 @@ class TodoManager {
     }
 
     private let storageService: StorageService
+    private let userDefaults = UserDefaults.standard
+    private let firstLaunchKey = "isFirstLaunch"
 
     init(storageService: StorageService = JSONStorageService()) {
         self.storageService = storageService
-        loadList()
+        if isFirstLaunch() {
+            lists = TodoList.mockTodoLists
+            saveList()
+            setFirstLaunchComplete()
+        } else {
+            loadList()
+        }
+    }
+
+    private func isFirstLaunch() -> Bool {
+        return !userDefaults.bool(forKey: firstLaunchKey)
+    }
+
+    private func setFirstLaunchComplete() {
+        userDefaults.set(true, forKey: firstLaunchKey)
     }
 
     func loadList() {
