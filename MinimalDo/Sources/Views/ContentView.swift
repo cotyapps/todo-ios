@@ -59,6 +59,9 @@ struct ContentView: View {
                 PayWallView(displayPaywall: $displayPaywall)
             })
         }
+        .onReceive(NotificationCenter.default.publisher(for: Notification.Name("TodoItemToggled"))) { _ in
+            todoManager.loadList()
+        }
     }
 
     private func confirmAddList() {
