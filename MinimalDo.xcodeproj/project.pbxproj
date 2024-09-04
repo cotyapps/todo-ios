@@ -29,11 +29,13 @@
 		36E9BAB52C81FB5100389DCB /* TodoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BA452C738E8700389DCB /* TodoManager.swift */; };
 		36E9BAB62C81FB5C00389DCB /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BA912C7DD6BD00389DCB /* Storage.swift */; };
 		36E9BABF2C85EC6700389DCB /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BA972C81BF1E00389DCB /* Subscription.swift */; };
-		36E9BAC52C85FA8100389DCB /* SelectListIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BAC42C85FA8100389DCB /* SelectListIntent.swift */; };
 		36E9BAC62C85FA8100389DCB /* SelectListIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BAC42C85FA8100389DCB /* SelectListIntent.swift */; };
-		36E9BACC2C87169100389DCB /* ToggleItemIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BACB2C87169100389DCB /* ToggleItemIntent.swift */; };
 		36E9BACD2C87169100389DCB /* ToggleItemIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BACB2C87169100389DCB /* ToggleItemIntent.swift */; };
-		36E9BACE2C8758CD00389DCB /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BA482C74887D00389DCB /* MockData.swift */; };
+		36E9BAD02C87639200389DCB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BACF2C87639200389DCB /* SettingsView.swift */; };
+		36E9BAD62C88563600389DCB /* SelectListIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BAC42C85FA8100389DCB /* SelectListIntent.swift */; };
+		36E9BADA2C885E4600389DCB /* ItemDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BAD92C885E4500389DCB /* ItemDetailsView.swift */; };
+		36E9BADC2C88647500389DCB /* ListDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BADB2C88647500389DCB /* ListDetailsView.swift */; };
+		36E9BADD2C88880000389DCB /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BA482C74887D00389DCB /* MockData.swift */; };
 		4182862D2C627B2B0022E621 /* MinimalDoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4182862C2C627B2B0022E621 /* MinimalDoApp.swift */; };
 		4182862F2C627B2B0022E621 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4182862E2C627B2B0022E621 /* ContentView.swift */; };
 		418286312C627B2C0022E621 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 418286302C627B2C0022E621 /* Assets.xcassets */; };
@@ -87,6 +89,9 @@
 		36E9BABB2C85BC9F00389DCB /* MinimalDoWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MinimalDoWidgetExtension.entitlements; sourceTree = SOURCE_ROOT; };
 		36E9BAC42C85FA8100389DCB /* SelectListIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectListIntent.swift; sourceTree = "<group>"; };
 		36E9BACB2C87169100389DCB /* ToggleItemIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleItemIntent.swift; sourceTree = "<group>"; };
+		36E9BACF2C87639200389DCB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		36E9BAD92C885E4500389DCB /* ItemDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailsView.swift; sourceTree = "<group>"; };
+		36E9BADB2C88647500389DCB /* ListDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailsView.swift; sourceTree = "<group>"; };
 		418286292C627B2B0022E621 /* MinimalDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinimalDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4182862C2C627B2B0022E621 /* MinimalDoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimalDoApp.swift; sourceTree = "<group>"; };
 		4182862E2C627B2B0022E621 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -159,14 +164,48 @@
 			isa = PBXGroup;
 			children = (
 				36E9BABB2C85BC9F00389DCB /* MinimalDoWidgetExtension.entitlements */,
-				36E9BAA42C81EE3500389DCB /* MinimalDoWidgetBundle.swift */,
-				36E9BAA62C81EE3500389DCB /* MinimalDoWidget.swift */,
-				36E9BAA82C81EE3700389DCB /* Assets.xcassets */,
+				36E9BAD12C88522700389DCB /* Assets */,
+				36E9BAD32C8852E800389DCB /* Sources */,
 				36E9BAAA2C81EE3700389DCB /* Info.plist */,
+			);
+			path = MinimalDoWidget;
+			sourceTree = "<group>";
+		};
+		36E9BAD12C88522700389DCB /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				36E9BAA82C81EE3700389DCB /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		36E9BAD32C8852E800389DCB /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				36E9BAA42C81EE3500389DCB /* MinimalDoWidgetBundle.swift */,
+				36E9BAD42C88530B00389DCB /* Views */,
+				36E9BAD52C88532500389DCB /* Intents */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		36E9BAD42C88530B00389DCB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				36E9BAA62C81EE3500389DCB /* MinimalDoWidget.swift */,
+				36E9BAD92C885E4500389DCB /* ItemDetailsView.swift */,
+				36E9BADB2C88647500389DCB /* ListDetailsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		36E9BAD52C88532500389DCB /* Intents */ = {
+			isa = PBXGroup;
+			children = (
 				36E9BAC42C85FA8100389DCB /* SelectListIntent.swift */,
 				36E9BACB2C87169100389DCB /* ToggleItemIntent.swift */,
 			);
-			path = MinimalDoWidget;
+			path = Intents;
 			sourceTree = "<group>";
 		};
 		418286202C627B2B0022E621 = {
@@ -223,6 +262,7 @@
 				36E9BA502C75D4C500389DCB /* ElementView.swift */,
 				36E9BA522C7734B200389DCB /* AddEditItemView.swift */,
 				36E9BA952C80C74A00389DCB /* PayWallView.swift */,
+				36E9BACF2C87639200389DCB /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -350,9 +390,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				36E9BAB52C81FB5100389DCB /* TodoManager.swift in Sources */,
+				36E9BADD2C88880000389DCB /* MockData.swift in Sources */,
+				36E9BADA2C885E4600389DCB /* ItemDetailsView.swift in Sources */,
 				36E9BAA72C81EE3500389DCB /* MinimalDoWidget.swift in Sources */,
 				36E9BACD2C87169100389DCB /* ToggleItemIntent.swift in Sources */,
 				36E9BAB32C81FB4B00389DCB /* TodoItem.swift in Sources */,
+				36E9BADC2C88647500389DCB /* ListDetailsView.swift in Sources */,
 				36E9BAA52C81EE3500389DCB /* MinimalDoWidgetBundle.swift in Sources */,
 				36E9BABF2C85EC6700389DCB /* Subscription.swift in Sources */,
 				36E9BAB42C81FB4F00389DCB /* TodoList.swift in Sources */,
@@ -368,17 +411,17 @@
 			files = (
 				36E9BA462C738E8700389DCB /* TodoManager.swift in Sources */,
 				36E9BA532C7734B200389DCB /* AddEditItemView.swift in Sources */,
-				36E9BACC2C87169100389DCB /* ToggleItemIntent.swift in Sources */,
 				36E9BA512C75D4C500389DCB /* ElementView.swift in Sources */,
 				36E9BA492C74887D00389DCB /* MockData.swift in Sources */,
 				4182862F2C627B2B0022E621 /* ContentView.swift in Sources */,
 				36E9BA4F2C74C70900389DCB /* ListView.swift in Sources */,
 				36E9BA982C81BF1E00389DCB /* Subscription.swift in Sources */,
+				36E9BAD02C87639200389DCB /* SettingsView.swift in Sources */,
 				36E9BA442C738D4E00389DCB /* TodoList.swift in Sources */,
 				36E9BA422C738B3600389DCB /* TodoItem.swift in Sources */,
 				36E9BA942C807E8A00389DCB /* Notification.swift in Sources */,
 				4182862D2C627B2B0022E621 /* MinimalDoApp.swift in Sources */,
-				36E9BAC52C85FA8100389DCB /* SelectListIntent.swift in Sources */,
+				36E9BAD62C88563600389DCB /* SelectListIntent.swift in Sources */,
 				36E9BA922C7DD6BD00389DCB /* Storage.swift in Sources */,
 				36E9BA962C80C74A00389DCB /* PayWallView.swift in Sources */,
 			);
@@ -409,7 +452,7 @@
 				INFOPLIST_FILE = MinimalDoWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = MinimalDoWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -439,7 +482,7 @@
 				INFOPLIST_FILE = MinimalDoWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = MinimalDoWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -592,6 +635,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -623,6 +667,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

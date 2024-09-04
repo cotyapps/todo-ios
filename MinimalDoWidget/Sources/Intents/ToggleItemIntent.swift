@@ -21,6 +21,7 @@ struct ToggleItemIntent: AppIntent {
     func perform() async throws -> some IntentResult {
         let todoManager = TodoManager()
         todoManager.toggleTodo(todoIndex: todoIndex, listIndex: listIndex)
+        NotificationCenter.default.post(name: Notification.Name("TodoItemToggled"), object: nil)
         return .result()
     }
 }
