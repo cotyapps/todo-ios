@@ -25,7 +25,7 @@ struct AddEditItemView: View {
 
                 if hasDueDate {
                     DatePicker(
-                        "",
+                        "Due Date",
                         selection: $dueDate,
                         in: Date()...,
                         displayedComponents: [.date]
