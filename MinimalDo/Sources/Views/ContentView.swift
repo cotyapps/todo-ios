@@ -6,6 +6,7 @@ struct ContentView: View {
     @State private var newListName = ""
     @State private var chosenList: IndexSet?
     @State private var displayPaywall = false
+    @State private var showingSettings = false
 
     var body: some View {
         NavigationStack {
@@ -34,13 +35,23 @@ struct ContentView: View {
             }
             .navigationTitle("Minimal Todo")
             .toolbar {
-                Button("New list", systemImage: "plus") {
-                    newListName = ""
-                    chosenList = nil
-                    if !todoManager.canAddList() {
-                        displayPaywall.toggle()
-                    } else {
-                        showingListAlert = true
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    HStack {
+                        Button("New list", systemImage: "plus") {
+                            newListName = ""
+                            chosenList = nil
+                            if !todoManager.canAddList() {
+                                displayPaywall.toggle()
+                            } else {
+                                showingListAlert = true
+                            }
+                        }
+                        
+                        Button(action: {
+                            showingSettings = true
+                        }) {
+                            Image(systemName: "gear")
+                        }
                     }
                 }
             }
@@ -58,6 +69,9 @@ struct ContentView: View {
             .sheet(isPresented: $displayPaywall, content: {
                 PayWallView(displayPaywall: $displayPaywall)
             })
+            .sheet(isPresented: $showingSettings) {
+                SettingsView()
+            }
         }
         .onReceive(NotificationCenter.default.publisher(for: Notification.Name("TodoItemToggled"))) { _ in
             todoManager.loadList()
