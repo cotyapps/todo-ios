@@ -119,7 +119,6 @@ struct MinimalDoWidget: Widget {
 } timeline: {
     let workList = TodoList.mockTodoLists[0]
     ListEntry(date: .now, widgetList: WidgetList(id: workList.id.uuidString, index: 0, list: workList))
-
     let personalList = TodoList.mockTodoLists[1]
     ListEntry(date: .now.addingTimeInterval(3600),
               widgetList: WidgetList(id: personalList.id.uuidString, index: 1, list: personalList))
