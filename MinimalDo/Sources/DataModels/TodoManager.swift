@@ -1,33 +1,36 @@
 import Foundation
+import WidgetKit
 
 @Observable
 class TodoManager {
-    var lists: [TodoList] = []
+    var lists: [TodoList] = [] {
+        didSet {
+            saveList()
+            WidgetCenter.shared.reloadAllTimelines()
+        }
+    }
 
     private let storageService: StorageService
 
-    init(lists: [TodoList] = [], storageService: StorageService = JSONStorageService(fileName: "TodoLists.json")) {
-        self.lists = lists
+    init(storageService: StorageService = JSONStorageService()) {
         self.storageService = storageService
         loadList()
     }
 
     func loadList() {
-        let loadedItems = storageService.loadItems()
-        self.lists = loadedItems
+        self.lists = storageService.loadItems()
     }
 
-    func storeList() {
+    func saveList() {
         storageService.saveItems(self.lists)
     }
 
     func canAddList() -> Bool {
-        return countLists() < 1 || checkIfSubscribe()
+        return countLists() < 3 || checkIfSubscribe()
     }
 
     func addList(_ list: TodoList) {
         lists.append(list)
-        storeList()
     }
 
     func countLists() -> Int {
@@ -37,12 +40,16 @@ class TodoManager {
     func changeListName(at index: IndexSet, newName: String) {
         guard let index = index.first else { return }
         lists[index].name = newName
-        storeList()
     }
 
     func removeList(at index: IndexSet) {
         lists.remove(atOffsets: index)
-        storeList()
+    }
+
+    func getWidgetLists() -> [WidgetList] {
+        return Array(lists.enumerated()).map { index, todoList in
+            WidgetList(id: String(index), index: index, list: todoList)
+        }
     }
 
     func addTodo(_ todo: TodoItem, to listId: UUID) {
@@ -50,7 +57,6 @@ class TodoManager {
             return
         }
         lists[index].todoItems.append(todo)
-        storeList()
     }
 
     func removeTodo(_ todo: TodoItem, from listId: UUID) {
@@ -61,6 +67,27 @@ class TodoManager {
             return
         }
         lists[listIndex].todoItems.remove(at: todoIndex)
-        storeList()
+    }
+
+    func toggleTodo(todoIndex: Int, listIndex: Int) {
+        guard listIndex >= 0 && listIndex < lists.count else {
+            print("Invalid list index")
+            return
+        }
+
+        let allTodoItems = lists[listIndex].todoItems
+        let undoneTodoItems = allTodoItems.filter { !$0.isDone }
+
+        guard todoIndex >= 0 && todoIndex < undoneTodoItems.count else {
+            print("Invalid todo index")
+            return
+        }
+
+        if let fullListIndex = allTodoItems.firstIndex(where: { $0.id == undoneTodoItems[todoIndex].id }) {
+            lists[listIndex].todoItems[fullListIndex].isDone.toggle()
+            saveList()
+        } else {
+            print("Couldn't find the todo item in the full list")
+        }
     }
 }

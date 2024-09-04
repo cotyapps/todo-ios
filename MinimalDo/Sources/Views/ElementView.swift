@@ -27,7 +27,7 @@ struct ElementView: View {
                         Image(systemName: "calendar")
                             .imageScale(.small)
                             .foregroundColor(.secondary)
-                        Text(dueDate, style: .date)
+                        Text(dueDate, format: Date.FormatStyle(date: .abbreviated, time: .shortened))
                             .font(.footnote)
                             .foregroundColor(.gray)
                     }

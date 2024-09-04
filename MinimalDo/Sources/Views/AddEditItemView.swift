@@ -24,9 +24,13 @@ struct AddEditItemView: View {
                 Toggle("Due on", isOn: $hasDueDate)
 
                 if hasDueDate {
-                    DatePicker(selection: $dueDate, in: ...Date.now, displayedComponents: .date) {
-                        Text("")
-                    }
+                    DatePicker(
+                        "",
+                        selection: $dueDate,
+                        in: Date()...,
+                        displayedComponents: [.date, .hourAndMinute]
+                    )
+                    .datePickerStyle(GraphicalDatePickerStyle())
                 }
             }
             .onAppear {
@@ -102,10 +106,8 @@ struct AddEditItemView: View {
         content.sound = .default
 
         if let dueDate = item.dueDate {
-            var triggerDate = Calendar.current.dateComponents([.year, .month, .day],
+            let triggerDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute],
                                                               from: dueDate)
-
-            triggerDate.hour = 9
 
             let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
 

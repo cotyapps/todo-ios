@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var todoManager = TodoManager(lists: TodoList.mockTodoLists)
+    @State private var todoManager = TodoManager()
     @State private var showingListAlert = false
     @State private var newListName = ""
     @State private var chosenList: IndexSet?
@@ -46,7 +46,7 @@ struct ContentView: View {
                                 showingListAlert = true
                             }
                         }
-                        
+
                         Button(action: {
                             showingSettings = true
                         }) {
@@ -72,6 +72,9 @@ struct ContentView: View {
             .sheet(isPresented: $showingSettings) {
                 SettingsView()
             }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: Notification.Name("TodoItemToggled"))) { _ in
+            todoManager.loadList()
         }
     }
 
