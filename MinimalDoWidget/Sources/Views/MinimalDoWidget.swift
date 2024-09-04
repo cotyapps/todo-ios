@@ -61,33 +61,17 @@ struct MinimalDoWidgetEntryView: View {
     var smallWidgetView: some View {
         VStack(alignment: .leading) {
             HStack {
-                Text(entry.widgetList.list.name)
-                    .font(.subheadline)
-                    .bold()
-                    .foregroundColor(.accentColor)
+                ListTitleView(listName: entry.widgetList.list.name, lineLimit: 1)
                 Spacer()
-                Text("\(entry.widgetList.list.todoItems.filter { !$0.isDone }.count)")
-                    .font(.title3)
-                    .bold()
+                UndoneItemCountView(todoItems: entry.widgetList.list.todoItems)
             }
-            ForEach(Array(entry.widgetList.list.todoItems
-                .filter({ !$0.isDone }).prefix(3).enumerated()),
-                    id: \.offset) { index, item in
-                HStack {
-                    Button(intent: ToggleItemIntent(todoIndex: index, listIndex: entry.widgetList.index)) {
-                        Image(systemName: item.isDone ? "checkmark.circle.fill" : "circle")
-                            .foregroundColor(.gray)
-                    }
-                    .buttonStyle(PlainButtonStyle())
-                    Text(item.title)
-                        .font(.footnote)
-                        .foregroundColor(item.isDone ? .gray : .black)
-                        .lineLimit(1)
-                        .truncationMode(.tail)
-                }
+            UndoneItemsView(widgetList: entry.widgetList, itemLimit: 3)
                 .padding(.top, 1)
-            }
         }
+        .containerBackground(for: .widget) {
+            Color.white
+        }
+
     }
 
     var mediumWidgetView: some View {
@@ -95,48 +79,21 @@ struct MinimalDoWidgetEntryView: View {
             HStack(spacing: 20) {
                 VStack(alignment: .leading) {
                     Spacer()
-                    Text("\(entry.widgetList.list.todoItems.filter { !$0.isDone }.count)")
-                        .font(.title3)
-                        .bold()
-                    Text(entry.widgetList.list.name)
-                        .font(.subheadline)
-                        .bold()
-                        .foregroundColor(.accentColor)
-                        .lineLimit(2)
-                        .truncationMode(.tail)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    UndoneItemCountView(todoItems: entry.widgetList.list.todoItems)
+                    ListTitleView(listName: entry.widgetList.list.name, lineLimit: 2)
                 }
                 .frame(width: geometry.size.width / 4)
 
                 VStack(alignment: .leading) {
-                    ForEach(Array(entry.widgetList.list.todoItems
-                        .filter({ !$0.isDone }).prefix(4).enumerated()),
-                            id: \.offset) { index, item in
-                        HStack {
-                            Button(intent: ToggleItemIntent(todoIndex: index, listIndex: entry.widgetList.index)) {
-                                Image(systemName: item.isDone ? "checkmark.circle.fill" : "circle")
-                                    .foregroundColor(.gray)
-                            }
-                            .buttonStyle(PlainButtonStyle())
-
-                            Text(item.title)
-                                .font(.footnote)
-                                .foregroundColor(item.isDone ? .gray : .black)
-                                .lineLimit(1)
-                                .truncationMode(.tail)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                        .padding(.top, 2)
-                    }
-                    if entry.widgetList.list.todoItems.filter({ !$0.isDone }).isEmpty {
-                        Text("All tasks completed")
-                            .font(.subheadline)
-                    }
+                    UndoneItemsView(widgetList: entry.widgetList, itemLimit: 4)
                 }
                 .frame(width: geometry.size.width * 3 / 4)
             }
         }
         .padding(.horizontal, 10)
+        .containerBackground(for: .widget) {
+            Color.white
+        }
     }
 }
 
