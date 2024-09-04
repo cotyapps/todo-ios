@@ -18,7 +18,6 @@
 		36E9BA942C807E8A00389DCB /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BA932C807E8900389DCB /* Notification.swift */; };
 		36E9BA962C80C74A00389DCB /* PayWallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BA952C80C74A00389DCB /* PayWallView.swift */; };
 		36E9BA982C81BF1E00389DCB /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BA972C81BF1E00389DCB /* Subscription.swift */; };
-		36E9BAD02C87639200389DCB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BACF2C87639200389DCB /* SettingsView.swift */; };
 		36E9BAA02C81EE3500389DCB /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E9BA9F2C81EE3500389DCB /* WidgetKit.framework */; };
 		36E9BAA22C81EE3500389DCB /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E9BAA12C81EE3500389DCB /* SwiftUI.framework */; };
 		36E9BAA52C81EE3500389DCB /* MinimalDoWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BAA42C81EE3500389DCB /* MinimalDoWidgetBundle.swift */; };
@@ -32,6 +31,7 @@
 		36E9BABF2C85EC6700389DCB /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BA972C81BF1E00389DCB /* Subscription.swift */; };
 		36E9BAC62C85FA8100389DCB /* SelectListIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BAC42C85FA8100389DCB /* SelectListIntent.swift */; };
 		36E9BACD2C87169100389DCB /* ToggleItemIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BACB2C87169100389DCB /* ToggleItemIntent.swift */; };
+		36E9BAD02C87639200389DCB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BACF2C87639200389DCB /* SettingsView.swift */; };
 		36E9BAD62C88563600389DCB /* SelectListIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BAC42C85FA8100389DCB /* SelectListIntent.swift */; };
 		36E9BADA2C885E4600389DCB /* ItemDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BAD92C885E4500389DCB /* ItemDetailsView.swift */; };
 		36E9BADC2C88647500389DCB /* ListDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BADB2C88647500389DCB /* ListDetailsView.swift */; };
@@ -78,7 +78,6 @@
 		36E9BA932C807E8900389DCB /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		36E9BA952C80C74A00389DCB /* PayWallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWallView.swift; sourceTree = "<group>"; };
 		36E9BA972C81BF1E00389DCB /* Subscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
-		36E9BACF2C87639200389DCB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		36E9BA9D2C81EE3400389DCB /* MinimalDoWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MinimalDoWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		36E9BA9F2C81EE3500389DCB /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		36E9BAA12C81EE3500389DCB /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -90,6 +89,7 @@
 		36E9BABB2C85BC9F00389DCB /* MinimalDoWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MinimalDoWidgetExtension.entitlements; sourceTree = SOURCE_ROOT; };
 		36E9BAC42C85FA8100389DCB /* SelectListIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectListIntent.swift; sourceTree = "<group>"; };
 		36E9BACB2C87169100389DCB /* ToggleItemIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleItemIntent.swift; sourceTree = "<group>"; };
+		36E9BACF2C87639200389DCB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		36E9BAD92C885E4500389DCB /* ItemDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailsView.swift; sourceTree = "<group>"; };
 		36E9BADB2C88647500389DCB /* ListDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailsView.swift; sourceTree = "<group>"; };
 		418286292C627B2B0022E621 /* MinimalDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinimalDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -451,7 +451,7 @@
 				INFOPLIST_FILE = MinimalDoWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = MinimalDoWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -481,7 +481,7 @@
 				INFOPLIST_FILE = MinimalDoWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = MinimalDoWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -634,6 +634,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -665,6 +666,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

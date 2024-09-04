@@ -46,7 +46,7 @@ struct ContentView: View {
                                 showingListAlert = true
                             }
                         }
-                        
+
                         Button(action: {
                             showingSettings = true
                         }) {
