@@ -117,34 +117,17 @@ struct MinimalDoWidget: Widget {
 #Preview(as: .systemMedium) {
     MinimalDoWidget()
 } timeline: {
-    ListEntry(date: .now, widgetList: WidgetList(id: "1", index: 0, list: TodoList(name: "Personal Tasks", todoItems: [
-        TodoItem(title: "Buy groceries", isDone: false),
-        TodoItem(title: "Finish project report", isDone: true),
-        TodoItem(title: "Call Mom", isDone: false),
-        TodoItem(title: "Walk the dog", isDone: false),
-        TodoItem(title: "Read a book", isDone: true),
-        TodoItem(title: "Workout", isDone: false),
-        TodoItem(title: "Clean the house", isDone: true)
-    ])))
+    let workList = TodoList.mockTodoLists[0]
+    ListEntry(date: .now, widgetList: WidgetList(id: workList.id.uuidString, index: 0, list: workList))
+
+    let personalList = TodoList.mockTodoLists[1]
     ListEntry(date: .now.addingTimeInterval(3600),
-              widgetList: WidgetList(id: "2", index: 1, list: TodoList(name: "Work Tasks", todoItems: [
-        TodoItem(title: "Email client", isDone: false),
-        TodoItem(title: "Team meeting", isDone: true),
-        TodoItem(title: "Prepare presentation", isDone: false),
-        TodoItem(title: "Review budget", isDone: false),
-        TodoItem(title: "Write code documentation", isDone: true)
-    ])))
+              widgetList: WidgetList(id: personalList.id.uuidString, index: 1, list: personalList))
 }
 
 #Preview(as: .systemSmall) {
     MinimalDoWidget()
 } timeline: {
-    ListEntry(date: .now, widgetList: WidgetList(id: "3", index: 0, list: TodoList(name: "Quick Tasks", todoItems: [
-        TodoItem(title: "Water plants", isDone: false),
-        TodoItem(title: "Reply to texts", isDone: true),
-        TodoItem(title: "Take out trash", isDone: false),
-        TodoItem(title: "Prepare lunch", isDone: false),
-        TodoItem(title: "Check emails", isDone: false),
-        TodoItem(title: "Set alarm", isDone: true)
-    ])))
+    let learningList = TodoList.mockTodoLists[2]
+    ListEntry(date: .now, widgetList: WidgetList(id: learningList.id.uuidString, index: 2, list: learningList))
 }

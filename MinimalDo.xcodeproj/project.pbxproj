@@ -34,6 +34,7 @@
 		36E9BAD62C88563600389DCB /* SelectListIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BAC42C85FA8100389DCB /* SelectListIntent.swift */; };
 		36E9BADA2C885E4600389DCB /* ItemDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BAD92C885E4500389DCB /* ItemDetailsView.swift */; };
 		36E9BADC2C88647500389DCB /* ListDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BADB2C88647500389DCB /* ListDetailsView.swift */; };
+		36E9BADD2C88880000389DCB /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BA482C74887D00389DCB /* MockData.swift */; };
 		4182862D2C627B2B0022E621 /* MinimalDoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4182862C2C627B2B0022E621 /* MinimalDoApp.swift */; };
 		4182862F2C627B2B0022E621 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4182862E2C627B2B0022E621 /* ContentView.swift */; };
 		418286312C627B2C0022E621 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 418286302C627B2C0022E621 /* Assets.xcassets */; };
@@ -386,6 +387,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36E9BAB52C81FB5100389DCB /* TodoManager.swift in Sources */,
+				36E9BADD2C88880000389DCB /* MockData.swift in Sources */,
 				36E9BADA2C885E4600389DCB /* ItemDetailsView.swift in Sources */,
 				36E9BAA72C81EE3500389DCB /* MinimalDoWidget.swift in Sources */,
 				36E9BACD2C87169100389DCB /* ToggleItemIntent.swift in Sources */,
