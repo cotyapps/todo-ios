@@ -10,6 +10,10 @@
 		13203B2192FBF5B4FEB6095E /* KovaleeAttribution in Frameworks */ = {isa = PBXBuildFile; productRef = A1DAD1767BC922A43FE24B30 /* KovaleeAttribution */; };
 		366ECD9F2C89BF3300F7C5D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366ECD9E2C89BF3300F7C5D1 /* AppDelegate.swift */; };
 		366ECDA32C89ECCB00F7C5D1 /* UserTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366ECDA22C89ECCB00F7C5D1 /* UserTracking.swift */; };
+		366ECDA62C89FBD500F7C5D1 /* KovaleeSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 366ECDA52C89FBD500F7C5D1 /* KovaleeSDK */; };
+		366ECDA82C89FBD500F7C5D1 /* KovaleeAttribution in Frameworks */ = {isa = PBXBuildFile; productRef = 366ECDA72C89FBD500F7C5D1 /* KovaleeAttribution */; };
+		366ECDAA2C89FBD500F7C5D1 /* KovaleeRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 366ECDA92C89FBD500F7C5D1 /* KovaleeRemoteConfig */; };
+		366ECDAC2C89FBD500F7C5D1 /* KovaleePurchases in Frameworks */ = {isa = PBXBuildFile; productRef = 366ECDAB2C89FBD500F7C5D1 /* KovaleePurchases */; };
 		36E9BA422C738B3600389DCB /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BA412C738B3600389DCB /* TodoItem.swift */; };
 		36E9BA442C738D4E00389DCB /* TodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BA432C738D4E00389DCB /* TodoList.swift */; };
 		36E9BA462C738E8700389DCB /* TodoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BA452C738E8700389DCB /* TodoManager.swift */; };
@@ -116,8 +120,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				366ECDAA2C89FBD500F7C5D1 /* KovaleeRemoteConfig in Frameworks */,
 				36E9BAA22C81EE3500389DCB /* SwiftUI.framework in Frameworks */,
 				36E9BAA02C81EE3500389DCB /* WidgetKit.framework in Frameworks */,
+				366ECDA82C89FBD500F7C5D1 /* KovaleeAttribution in Frameworks */,
+				366ECDA62C89FBD500F7C5D1 /* KovaleeSDK in Frameworks */,
+				366ECDAC2C89FBD500F7C5D1 /* KovaleePurchases in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,6 +320,12 @@
 			dependencies = (
 			);
 			name = MinimalDoWidgetExtension;
+			packageProductDependencies = (
+				366ECDA52C89FBD500F7C5D1 /* KovaleeSDK */,
+				366ECDA72C89FBD500F7C5D1 /* KovaleeAttribution */,
+				366ECDA92C89FBD500F7C5D1 /* KovaleeRemoteConfig */,
+				366ECDAB2C89FBD500F7C5D1 /* KovaleePurchases */,
+			);
 			productName = MinimalDoWidgetExtension;
 			productReference = 36E9BA9D2C81EE3400389DCB /* MinimalDoWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -817,6 +831,26 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		366ECDA52C89FBD500F7C5D1 /* KovaleeSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D5A21B549E430901C5CB268A /* XCRemoteSwiftPackageReference "Kovalee-iOS-SDK" */;
+			productName = KovaleeSDK;
+		};
+		366ECDA72C89FBD500F7C5D1 /* KovaleeAttribution */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D99163B87BC62CF23F0E72E9 /* XCRemoteSwiftPackageReference "KovaleeAttribution-iOS" */;
+			productName = KovaleeAttribution;
+		};
+		366ECDA92C89FBD500F7C5D1 /* KovaleeRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7DEB5964439FBB5B968E47EA /* XCRemoteSwiftPackageReference "KovaleeRemoteConfig-iOS" */;
+			productName = KovaleeRemoteConfig;
+		};
+		366ECDAB2C89FBD500F7C5D1 /* KovaleePurchases */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 193923BF6715F719E9E1BBC5 /* XCRemoteSwiftPackageReference "KovaleePurchases-iOS" */;
+			productName = KovaleePurchases;
+		};
 		42DE91DB4F0EDAF7CC9974BC /* KovaleeRemoteConfig */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7DEB5964439FBB5B968E47EA /* XCRemoteSwiftPackageReference "KovaleeRemoteConfig-iOS" */;

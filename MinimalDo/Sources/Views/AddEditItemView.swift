@@ -1,5 +1,7 @@
 import SwiftUI
 import UserNotifications
+import KovaleeSDK
+import KovaleeFramework
 
 struct AddEditItemView: View {
     @Environment(\.dismiss) var dismiss
@@ -50,6 +52,7 @@ struct AddEditItemView: View {
                             updateTodoItem(editingItem: editingItem)
                         } else {
                             await addTodoItem()
+                            Kovalee.sendEvent(Event(name: "ac_todo_item_created"))
                         }
                         dismiss()
                     }

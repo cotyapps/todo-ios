@@ -1,4 +1,6 @@
 import SwiftUI
+import KovaleeSDK
+import KovaleeFramework
 
 struct PayWallView: View {
     @Binding var displayPaywall: Bool
@@ -107,6 +109,9 @@ struct PayWallView: View {
                 .font(.headline)
                 .foregroundColor(.gray)
             }
+        }
+        .onAppear() {
+            Kovalee.sendEvent(event: TaggingPlanLiteEvent.pageViewPaywall(source: "in_content"))
         }
     }
 }

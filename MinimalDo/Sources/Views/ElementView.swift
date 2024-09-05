@@ -1,4 +1,6 @@
 import SwiftUI
+import KovaleeSDK
+import KovaleeFramework
 
 struct ElementView: View {
     @Binding var todoItem: TodoItem
@@ -48,5 +50,6 @@ struct ElementView: View {
         withAnimation(.easeInOut(duration: 0.2)) {
             todoItem.isDone.toggle()
         }
+        Kovalee.sendEvent(Event(name: "ac_todo_item_completed", properties: ["source": "app"]))
     }
 }

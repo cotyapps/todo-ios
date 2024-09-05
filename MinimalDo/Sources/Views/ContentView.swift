@@ -1,3 +1,5 @@
+import KovaleeSDK
+import KovaleeFramework
 import SwiftUI
 
 struct ContentView: View {
@@ -76,6 +78,9 @@ struct ContentView: View {
         .onReceive(NotificationCenter.default.publisher(for: Notification.Name("TodoItemToggled"))) { _ in
             todoManager.loadList()
         }
+        .onAppear() {
+            Kovalee.sendEvent(event: .pageView(screen: "home"))
+        }
     }
 
     private func confirmAddList() {
@@ -84,16 +89,19 @@ struct ContentView: View {
         }
         let newTodoList = TodoList(name: newListName)
         todoManager.addList(newTodoList)
+        Kovalee.sendEvent(Event(name: "ac_todo_list_created"))
     }
     private func editListName(at offsets: IndexSet?, newName: String) {
         guard let offsets = offsets, !newName.isEmpty else {
             return
         }
         todoManager.changeListName(at: offsets, newName: newName)
+        Kovalee.sendEvent(Event(name: "ac_todo_list_edited"))
     }
 
     private func deleteList(at offsets: IndexSet) {
         todoManager.removeList(at: offsets)
+        Kovalee.sendEvent(Event(name: "ac_todo_list_deleted"))
     }
 }
 
