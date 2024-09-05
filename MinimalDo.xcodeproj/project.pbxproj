@@ -42,7 +42,6 @@
 		4182862F2C627B2B0022E621 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4182862E2C627B2B0022E621 /* ContentView.swift */; };
 		418286312C627B2C0022E621 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 418286302C627B2C0022E621 /* Assets.xcassets */; };
 		418286342C627B2C0022E621 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 418286332C627B2C0022E621 /* Preview Assets.xcassets */; };
-		47BFA7149D3523170B3F9BB3 /* KInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5BCF064E016AEAEBAE59382 /* KInfo.plist */; };
 		50145AB91E37453A4EA7C3D3 /* KovaleeKeys.json in Resources */ = {isa = PBXBuildFile; fileRef = 3590D7B6484E8D364774E55C /* KovaleeKeys.json */; };
 		9A20D7123EED46AE8357866E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A2275E4B72E9A0EE63726A0 /* GoogleService-Info.plist */; };
 		C6E99097897145C443097CEC /* KovaleeRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 42DE91DB4F0EDAF7CC9974BC /* KovaleeRemoteConfig */; };
@@ -74,7 +73,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3590D7B6484E8D364774E55C /* KovaleeKeys.json */ = {isa = PBXFileReference; name = KovaleeKeys.json; path = KovaleeScripts/KovaleeKeys.json; sourceTree = "<group>"; };
+		3590D7B6484E8D364774E55C /* KovaleeKeys.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = KovaleeKeys.json; path = KovaleeScripts/KovaleeKeys.json; sourceTree = "<group>"; };
 		36E9BA412C738B3600389DCB /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
 		36E9BA432C738D4E00389DCB /* TodoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoList.swift; sourceTree = "<group>"; };
 		36E9BA452C738E8700389DCB /* TodoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoManager.swift; sourceTree = "<group>"; };
@@ -105,8 +104,7 @@
 		4182862E2C627B2B0022E621 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		418286302C627B2C0022E621 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		418286332C627B2C0022E621 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		8A2275E4B72E9A0EE63726A0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; name = "GoogleService-Info.plist"; path = "KovaleeScripts/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		D5BCF064E016AEAEBAE59382 /* KInfo.plist */ = {isa = PBXFileReference; name = KInfo.plist; path = "/Users/quyduc/Desktop/todo-ios/KovaleeScripts/KInfo.plist"; sourceTree = "<absolute>"; };
+		8A2275E4B72E9A0EE63726A0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "KovaleeScripts/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,8 +228,6 @@
 				36E9BA9E2C81EE3500389DCB /* Frameworks */,
 				4182862A2C627B2B0022E621 /* Products */,
 				A96A6FC517F7C8B24B06BA94 /* Kovalee */,
-				D5BCF064E016AEAEBAE59382 /* KInfo.plist */,
-				A96A6FC517F7C8B24B06BA94 /* Kovalee */,
 			);
 			sourceTree = "<group>";
 		};
@@ -336,7 +332,6 @@
 				A1DAD1767BC922A43FE24B30 /* KovaleeAttribution */,
 				42DE91DB4F0EDAF7CC9974BC /* KovaleeRemoteConfig */,
 				C0A70684C23E89174FD645E7 /* KovaleePurchases */,
-				F99E7CD5A6DDEC1DB2D23654 /* KovaleePurchases */,
 			);
 			productName = MinimalDo;
 			productReference = 418286292C627B2B0022E621 /* MinimalDo.app */;
@@ -401,7 +396,6 @@
 				418286342C627B2C0022E621 /* Preview Assets.xcassets in Resources */,
 				418286312C627B2C0022E621 /* Assets.xcassets in Resources */,
 				50145AB91E37453A4EA7C3D3 /* KovaleeKeys.json in Resources */,
-				47BFA7149D3523170B3F9BB3 /* KInfo.plist in Resources */,
 				9A20D7123EED46AE8357866E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -443,7 +437,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run";
+			shellScript = "${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -464,7 +458,6 @@
 				36E9BAB42C81FB4F00389DCB /* TodoList.swift in Sources */,
 				36E9BAB62C81FB5C00389DCB /* Storage.swift in Sources */,
 				36E9BAC62C85FA8100389DCB /* SelectListIntent.swift in Sources */,
-				36E9BACE2C8758CD00389DCB /* (null) in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -694,7 +687,7 @@
 				DEVELOPMENT_TEAM = 8JC7C732LB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/quyduc/Desktop/todo-ios/KovaleeScripts/KInfo.plist";
+				INFOPLIST_FILE = ./KovaleeScripts/KInfo.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -728,7 +721,7 @@
 				DEVELOPMENT_TEAM = 8JC7C732LB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/quyduc/Desktop/todo-ios/KovaleeScripts/KInfo.plist";
+				INFOPLIST_FILE = ./KovaleeScripts/KInfo.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
