@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		13203B2192FBF5B4FEB6095E /* KovaleeAttribution in Frameworks */ = {isa = PBXBuildFile; productRef = A1DAD1767BC922A43FE24B30 /* KovaleeAttribution */; };
+		366ECD9F2C89BF3300F7C5D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366ECD9E2C89BF3300F7C5D1 /* AppDelegate.swift */; };
 		36E9BA422C738B3600389DCB /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BA412C738B3600389DCB /* TodoItem.swift */; };
 		36E9BA442C738D4E00389DCB /* TodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BA432C738D4E00389DCB /* TodoList.swift */; };
 		36E9BA462C738E8700389DCB /* TodoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BA452C738E8700389DCB /* TodoManager.swift */; };
@@ -74,6 +75,7 @@
 
 /* Begin PBXFileReference section */
 		3590D7B6484E8D364774E55C /* KovaleeKeys.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = KovaleeKeys.json; path = KovaleeScripts/KovaleeKeys.json; sourceTree = "<group>"; };
+		366ECD9E2C89BF3300F7C5D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36E9BA412C738B3600389DCB /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
 		36E9BA432C738D4E00389DCB /* TodoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoList.swift; sourceTree = "<group>"; };
 		36E9BA452C738E8700389DCB /* TodoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoManager.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 		36A6D4D32C73889F000148AC /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				366ECD9E2C89BF3300F7C5D1 /* AppDelegate.swift */,
 				4182862C2C627B2B0022E621 /* MinimalDoApp.swift */,
 				36E9BA902C7DD6AC00389DCB /* Services */,
 				36E9BA402C738B2600389DCB /* DataModels */,
@@ -473,6 +476,7 @@
 				36E9BA4F2C74C70900389DCB /* ListView.swift in Sources */,
 				36E9BA982C81BF1E00389DCB /* Subscription.swift in Sources */,
 				36E9BAD02C87639200389DCB /* SettingsView.swift in Sources */,
+				366ECD9F2C89BF3300F7C5D1 /* AppDelegate.swift in Sources */,
 				36E9BA442C738D4E00389DCB /* TodoList.swift in Sources */,
 				36E9BA422C738B3600389DCB /* TodoItem.swift in Sources */,
 				36E9BA942C807E8A00389DCB /* Notification.swift in Sources */,
