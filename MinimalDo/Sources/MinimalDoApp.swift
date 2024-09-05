@@ -14,9 +14,9 @@ struct MinimalDoApp: App {
             ContentView()
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
                     Task {
-                        let notificationAllowed = try? await isNotificationAllowed()
-                        if notificationAllowed! {
-                            Kovalee.setUserProperty(key: "push_notification_allowed", value: "no")
+                        let notificationAllowed = await isNotificationAllowed()
+                        if notificationAllowed {
+                            Kovalee.setUserProperty(key: "push_notification_allowed", value: "yes")
                         } else {
                             Kovalee.setUserProperty(key: "push_notification_allowed", value: "no")
                         }
