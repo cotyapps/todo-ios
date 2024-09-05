@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13203B2192FBF5B4FEB6095E /* KovaleeAttribution in Frameworks */ = {isa = PBXBuildFile; productRef = A1DAD1767BC922A43FE24B30 /* KovaleeAttribution */; };
 		36E9BA422C738B3600389DCB /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BA412C738B3600389DCB /* TodoItem.swift */; };
 		36E9BA442C738D4E00389DCB /* TodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BA432C738D4E00389DCB /* TodoList.swift */; };
 		36E9BA462C738E8700389DCB /* TodoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BA452C738E8700389DCB /* TodoManager.swift */; };
@@ -36,10 +37,16 @@
 		36E9BADA2C885E4600389DCB /* ItemDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BAD92C885E4500389DCB /* ItemDetailsView.swift */; };
 		36E9BADC2C88647500389DCB /* ListDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BADB2C88647500389DCB /* ListDetailsView.swift */; };
 		36E9BADD2C88880000389DCB /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BA482C74887D00389DCB /* MockData.swift */; };
+		379ED7167DED834C7D2875C1 /* KovaleePurchases in Frameworks */ = {isa = PBXBuildFile; productRef = C0A70684C23E89174FD645E7 /* KovaleePurchases */; };
 		4182862D2C627B2B0022E621 /* MinimalDoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4182862C2C627B2B0022E621 /* MinimalDoApp.swift */; };
 		4182862F2C627B2B0022E621 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4182862E2C627B2B0022E621 /* ContentView.swift */; };
 		418286312C627B2C0022E621 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 418286302C627B2C0022E621 /* Assets.xcassets */; };
 		418286342C627B2C0022E621 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 418286332C627B2C0022E621 /* Preview Assets.xcassets */; };
+		47BFA7149D3523170B3F9BB3 /* KInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5BCF064E016AEAEBAE59382 /* KInfo.plist */; };
+		50145AB91E37453A4EA7C3D3 /* KovaleeKeys.json in Resources */ = {isa = PBXBuildFile; fileRef = 3590D7B6484E8D364774E55C /* KovaleeKeys.json */; };
+		9A20D7123EED46AE8357866E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A2275E4B72E9A0EE63726A0 /* GoogleService-Info.plist */; };
+		C6E99097897145C443097CEC /* KovaleeRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 42DE91DB4F0EDAF7CC9974BC /* KovaleeRemoteConfig */; };
+		F28141E6B8706B032E07F533 /* KovaleeSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 77C252E9AEA6706FD8EFCAA4 /* KovaleeSDK */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +74,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3590D7B6484E8D364774E55C /* KovaleeKeys.json */ = {isa = PBXFileReference; name = KovaleeKeys.json; path = KovaleeScripts/KovaleeKeys.json; sourceTree = "<group>"; };
 		36E9BA412C738B3600389DCB /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
 		36E9BA432C738D4E00389DCB /* TodoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoList.swift; sourceTree = "<group>"; };
 		36E9BA452C738E8700389DCB /* TodoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoManager.swift; sourceTree = "<group>"; };
@@ -97,6 +105,8 @@
 		4182862E2C627B2B0022E621 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		418286302C627B2C0022E621 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		418286332C627B2C0022E621 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8A2275E4B72E9A0EE63726A0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; name = "GoogleService-Info.plist"; path = "KovaleeScripts/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D5BCF064E016AEAEBAE59382 /* KInfo.plist */ = {isa = PBXFileReference; name = KInfo.plist; path = "/Users/quyduc/Desktop/todo-ios/KovaleeScripts/KInfo.plist"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +123,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F28141E6B8706B032E07F533 /* KovaleeSDK in Frameworks */,
+				13203B2192FBF5B4FEB6095E /* KovaleeAttribution in Frameworks */,
+				C6E99097897145C443097CEC /* KovaleeRemoteConfig in Frameworks */,
+				379ED7167DED834C7D2875C1 /* KovaleePurchases in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +229,9 @@
 				36E9BAA32C81EE3500389DCB /* MinimalDoWidget */,
 				36E9BA9E2C81EE3500389DCB /* Frameworks */,
 				4182862A2C627B2B0022E621 /* Products */,
+				A96A6FC517F7C8B24B06BA94 /* Kovalee */,
+				D5BCF064E016AEAEBAE59382 /* KInfo.plist */,
+				A96A6FC517F7C8B24B06BA94 /* Kovalee */,
 			);
 			sourceTree = "<group>";
 		};
@@ -267,6 +284,16 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		A96A6FC517F7C8B24B06BA94 /* Kovalee */ = {
+			isa = PBXGroup;
+			children = (
+				3590D7B6484E8D364774E55C /* KovaleeKeys.json */,
+				8A2275E4B72E9A0EE63726A0 /* GoogleService-Info.plist */,
+			);
+			name = Kovalee;
+			path = ./;
+			sourceTree = SOURCE_ROOT;
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -296,6 +323,7 @@
 				418286272C627B2B0022E621 /* Resources */,
 				36E9BA472C7392B000389DCB /* ShellScript */,
 				36E9BAAE2C81EE3700389DCB /* Embed Foundation Extensions */,
+				F248AAD2F99B893AB934B7CD /* Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -303,6 +331,13 @@
 				36E9BAAC2C81EE3700389DCB /* PBXTargetDependency */,
 			);
 			name = MinimalDo;
+			packageProductDependencies = (
+				77C252E9AEA6706FD8EFCAA4 /* KovaleeSDK */,
+				A1DAD1767BC922A43FE24B30 /* KovaleeAttribution */,
+				42DE91DB4F0EDAF7CC9974BC /* KovaleeRemoteConfig */,
+				C0A70684C23E89174FD645E7 /* KovaleePurchases */,
+				F99E7CD5A6DDEC1DB2D23654 /* KovaleePurchases */,
+			);
 			productName = MinimalDo;
 			productReference = 418286292C627B2B0022E621 /* MinimalDo.app */;
 			productType = "com.apple.product-type.application";
@@ -334,6 +369,12 @@
 				Base,
 			);
 			mainGroup = 418286202C627B2B0022E621;
+			packageReferences = (
+				D5A21B549E430901C5CB268A /* XCRemoteSwiftPackageReference "Kovalee-iOS-SDK" */,
+				D99163B87BC62CF23F0E72E9 /* XCRemoteSwiftPackageReference "KovaleeAttribution-iOS" */,
+				7DEB5964439FBB5B968E47EA /* XCRemoteSwiftPackageReference "KovaleeRemoteConfig-iOS" */,
+				193923BF6715F719E9E1BBC5 /* XCRemoteSwiftPackageReference "KovaleePurchases-iOS" */,
+			);
 			productRefGroup = 4182862A2C627B2B0022E621 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -359,6 +400,9 @@
 			files = (
 				418286342C627B2C0022E621 /* Preview Assets.xcassets in Resources */,
 				418286312C627B2C0022E621 /* Assets.xcassets in Resources */,
+				50145AB91E37453A4EA7C3D3 /* KovaleeKeys.json in Resources */,
+				47BFA7149D3523170B3F9BB3 /* KInfo.plist in Resources */,
+				9A20D7123EED46AE8357866E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,6 +426,25 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
+		F248AAD2F99B893AB934B7CD /* Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
+				"$(BUILT_PRODUCTS_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
+				"$(BUILT_PRODUCTS_DIR)/$(EXECUTABLE_PATH)",
+			);
+			name = Crashlytics;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -401,7 +464,7 @@
 				36E9BAB42C81FB4F00389DCB /* TodoList.swift in Sources */,
 				36E9BAB62C81FB5C00389DCB /* Storage.swift in Sources */,
 				36E9BAC62C85FA8100389DCB /* SelectListIntent.swift in Sources */,
-				36E9BACE2C8758CD00389DCB /* MockData.swift in Sources */,
+				36E9BACE2C8758CD00389DCB /* (null) in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,10 +689,12 @@
 				CODE_SIGN_ENTITLEMENTS = MinimalDo/MinimalDo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"MinimalDo/Assets/Preview Content\"";
 				DEVELOPMENT_TEAM = 8JC7C732LB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "/Users/quyduc/Desktop/todo-ios/KovaleeScripts/KInfo.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -658,10 +723,12 @@
 				CODE_SIGN_ENTITLEMENTS = MinimalDo/MinimalDo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"MinimalDo/Assets/Preview Content\"";
 				DEVELOPMENT_TEAM = 8JC7C732LB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "/Users/quyduc/Desktop/todo-ios/KovaleeScripts/KInfo.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -712,6 +779,64 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		193923BF6715F719E9E1BBC5 /* XCRemoteSwiftPackageReference "KovaleePurchases-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/cotyapps/KovaleePurchases-iOS.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		7DEB5964439FBB5B968E47EA /* XCRemoteSwiftPackageReference "KovaleeRemoteConfig-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/cotyapps/KovaleeRemoteConfig-iOS.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		D5A21B549E430901C5CB268A /* XCRemoteSwiftPackageReference "Kovalee-iOS-SDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/cotyapps/Kovalee-iOS-SDK.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		D99163B87BC62CF23F0E72E9 /* XCRemoteSwiftPackageReference "KovaleeAttribution-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/cotyapps/KovaleeAttribution-iOS.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		42DE91DB4F0EDAF7CC9974BC /* KovaleeRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7DEB5964439FBB5B968E47EA /* XCRemoteSwiftPackageReference "KovaleeRemoteConfig-iOS" */;
+			productName = KovaleeRemoteConfig;
+		};
+		77C252E9AEA6706FD8EFCAA4 /* KovaleeSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D5A21B549E430901C5CB268A /* XCRemoteSwiftPackageReference "Kovalee-iOS-SDK" */;
+			productName = KovaleeSDK;
+		};
+		A1DAD1767BC922A43FE24B30 /* KovaleeAttribution */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D99163B87BC62CF23F0E72E9 /* XCRemoteSwiftPackageReference "KovaleeAttribution-iOS" */;
+			productName = KovaleeAttribution;
+		};
+		C0A70684C23E89174FD645E7 /* KovaleePurchases */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 193923BF6715F719E9E1BBC5 /* XCRemoteSwiftPackageReference "KovaleePurchases-iOS" */;
+			productName = KovaleePurchases;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 418286212C627B2B0022E621 /* Project object */;
 }

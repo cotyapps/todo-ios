@@ -14,3 +14,6 @@ excluded:
   - Pods
   - build
   - fastlane
+
+
+child_config: .swiftlint_kovalee.yml

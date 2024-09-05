@@ -1,0 +1,29 @@
+custom_rules:
+  Amplitude:
+	  included: ".*\.swift"
+	  name: "Amplitude"
+	  regex: "^import (Amplitude_Swift)|(TrackingOptions\(*\))"
+	  message: "Direct usage of Amplitude methods is disallowed. Please use the corresponding method in KovaleeSDK instead."
+	  severity: error
+
+  Adjust:
+	  included: ".*\.swift"
+	  name: "Adjust"
+	  regex: "^import (Adjust)|(Adjust\.appDidLaunch\(.*\))|(ADJConfig\(appToken:.*environment:.*\))|Adjust\.updateConversionValue|Adjust\.updatePostbackConversionValue"
+	  message: "Direct usage of Adjust methods is disallowed. Please use the corresponding method in KovaleeSDK instead."
+	  severity: error
+
+  Firebase:
+	  included: ".*\.swift"
+	  name: "Firebase"
+	  regex: "^import (FirebaseRemoteConfig)|(RemoteConfig.remoteConfig\(*\))"
+	  message: "Direct usage of Firebase methods is disallowed. Please use the corresponding method in KovaleeSDK instead."
+	  severity: error
+
+  RevenueCat:
+	  included: ".*\.swift"
+	  name: "RevenueCat"
+	  regex: "^import (RevenueCat)|(Purchases.configure)|(Purchases.shared.)"
+	  message: "Direct usage of RevenueCat methods is disallowed. Please use the corresponding method in KovaleeSDK instead."
+	  severity: error
+
