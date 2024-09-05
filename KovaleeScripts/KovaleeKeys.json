@@ -1,0 +1,34 @@
+{
+  "app_code": "mdo",
+  "liteVersion": true,
+  "adjust": "rupu8ksd2hvk",
+  "amplitude": {
+    "prodSDKId": "d37fbb7e049b77d53c83ee37b9c18a0a",
+    "devSDKId": "8748e37a582a68108e40d4b596dc4702"
+  },
+  "revenue_cat": {
+    "sdkId": "appl_zfaUGJoUugoflhIqLiszaisPXjP",
+    "observerMode": false
+  },
+  "firebase": {
+    "appId": "1:68655853261:ios:3999771d479cd789730384",
+    "apiKey": "AIzaSyBdpdZQEmMYsKbUQh6P-HS3WIyrEM9bk3M",
+    "senderId": "68655853261",
+    "projectId": "demoapp-14ef0",
+    "configuredInApp": false
+  },
+  "conversion_value": {
+    "bottom_tier": {
+      "subs.mdo_2.99_30_0": 60,
+      "subs.mdo_17.99_365_0": 61
+    },
+    "top_tier": {
+      "subs.mdo_2.99_30_0": 62,
+      "subs.mdo_17.99_365_0": 63
+    },
+    "us_tier": {
+      "subs.mdo_2.99_30_0": 64,
+      "subs.mdo_17.99_365_0": 65
+    }
+  }
+}

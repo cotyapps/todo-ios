@@ -1,0 +1,21 @@
+custom_rules:
+  Adjust:
+    included: ".*\\.swift"
+    name: "Adjust"
+    regex: "^import (Adjust)|(Adjust\\.appDidLaunch\\(.*\\))|(ADJConfig\\(appToken:.*environment:.*\\))|Adjust\\.updateConversionValue|Adjust\\.updatePostbackConversionValue"
+    message: "Direct usage of Adjust methods is disallowed. Please use the corresponding method in KovaleeSDK instead."
+    severity: error
+
+  Amplitude:
+    included: ".*\\.swift"
+    name: "Amplitude"
+    regex: "^import (Amplitude_Swift)|(TrackingOptions\\(*\\))"
+    message: "Direct usage of Amplitude methods is disallowed. Please use the corresponding method in KovaleeSDK instead."
+    severity: error
+
+  Applovin:
+    included: ".*\\.swift"
+    name: "Applovin"
+    regex: "^import (AppLovinSDK)|(MAInterstitialAd)|(MARewardedAd)|(ALSdk)"
+    message: "Direct usage of Applovin methods is disallowed. Please use the corresponding method in KovaleeSDK instead."
+    severity: error
