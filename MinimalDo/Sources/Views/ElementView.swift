@@ -10,11 +10,11 @@ struct ElementView: View {
         HStack {
             Button(action: {
                 Task { await completeTodoItem() }
-            }) {
+            }, label: {
                 Image(systemName: isCompleting ? "largecircle.fill.circle" : "circle")
                     .imageScale(.large)
                     .foregroundColor(.accentColor)
-            }
+            })
             VStack(alignment: .leading) {
                 Text(todoItem.title)
                     .font(.headline)

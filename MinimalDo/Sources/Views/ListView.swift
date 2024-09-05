@@ -12,9 +12,9 @@ struct ListView: View {
             ForEach($todoList.todoItems.filter { !$0.wrappedValue.isDone }) { $todoItem in
                 Button(action: {
                     openTodoItem(chosenTodo: todoItem)
-                }) {
+                }, label: {
                     ElementView(todoItem: $todoItem)
-                }
+                })
             }
         }
         .navigationTitle("\(todoList.name)")

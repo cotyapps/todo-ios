@@ -24,7 +24,7 @@ struct PayWallView: View {
                 VStack(spacing: 15) {
                     Button(action: {
                         chosenOption = SubscriptionStatus.monthly
-                    }) {
+                    }, label: {
                         HStack {
                             VStack(alignment: .leading) {
                                 Text("Primary Product")
@@ -47,10 +47,10 @@ struct PayWallView: View {
                                 .stroke(chosenOption == SubscriptionStatus.monthly
                                         ? Color.blue : Color.gray.opacity(0.5), lineWidth: 2)
                         )
-                    }
+                    })
                     Button(action: {
                         chosenOption = SubscriptionStatus.yearly
-                    }) {
+                    }, label: {
                         HStack {
                             VStack(alignment: .leading) {
                                 Text("Secondary Product")
@@ -73,13 +73,13 @@ struct PayWallView: View {
                                 .stroke(chosenOption == SubscriptionStatus.yearly
                                         ? Color.blue : Color.gray.opacity(0.5), lineWidth: 2)
                         )
-                    }
+                    })
                 }
                 .padding(.bottom, 40)
                 .padding(.horizontal, 20)
                 VStack {
                     Button(action: {
-                    }) {
+                    }, label: {
                         Text("Continue")
                             .font(.headline)
                             .bold()
@@ -88,16 +88,16 @@ struct PayWallView: View {
                             .frame(maxWidth: .infinity)
                             .background(Color.blue)
                             .cornerRadius(100)
-                    }
+                    })
                     .padding(.horizontal, 20)
                     .padding(.bottom, 10)
                     Button(action: {
-                    }) {
+                    }, label: {
                         Text("Restore")
                             .font(.headline)
                             .bold()
                             .foregroundColor(.gray)
-                    }
+                    })
                 }
                 .padding(.bottom, 20)
             }
@@ -110,7 +110,7 @@ struct PayWallView: View {
                 .foregroundColor(.gray)
             }
         }
-        .onAppear() {
+        .onAppear {
             Kovalee.sendEvent(event: TaggingPlanLiteEvent.pageViewPaywall(source: "in_content"))
         }
     }

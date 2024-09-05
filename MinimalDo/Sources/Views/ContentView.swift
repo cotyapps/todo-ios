@@ -51,9 +51,9 @@ struct ContentView: View {
 
                         Button(action: {
                             showingSettings = true
-                        }) {
+                        }, label: {
                             Image(systemName: "gear")
-                        }
+                        })
                     }
                 }
             }
@@ -78,7 +78,7 @@ struct ContentView: View {
         .onReceive(NotificationCenter.default.publisher(for: Notification.Name("TodoItemToggled"))) { _ in
             todoManager.loadList()
         }
-        .onAppear() {
+        .onAppear {
             Kovalee.sendEvent(event: .pageView(screen: "home"))
         }
     }
