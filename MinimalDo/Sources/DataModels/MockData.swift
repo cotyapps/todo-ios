@@ -21,7 +21,7 @@ extension TodoList {
                 TodoItem(title: "Finish project report", isDone: false,
                          description: "Include Q2 metrics", dueDate: Date().addingTimeInterval(172800)),
                 TodoItem(title: "Prepare presentation", isDone: false,
-                         description: "Sales pitch for new client", dueDate: Date().addingTimeInterval(345600)),
+                         description: "Sales pitch for new client", dueDate: Date().addingTimeInterval(345600))
             ]),
             TodoList(id: personalList.id, name: personalList.name, todoItems: [
                 TodoItem(title: "Buy groceries", isDone: false,
@@ -29,7 +29,7 @@ extension TodoList {
                 TodoItem(title: "Call mom", isDone: true,
                          description: "Ask about family trip", dueDate: nil),
                 TodoItem(title: "Go for a run", isDone: false,
-                         description: "30 minutes in the gym", dueDate: Date()),
+                         description: "30 minutes in the gym", dueDate: Date())
             ]),
             TodoList(id: learningList.id, name: learningList.name, todoItems: [
                 TodoItem(title: "Read a chapter", isDone: false,

@@ -1,4 +1,6 @@
 import SwiftUI
+import KovaleeSDK
+import KovaleeFramework
 
 struct ElementView: View {
     @Binding var todoItem: TodoItem
@@ -8,11 +10,11 @@ struct ElementView: View {
         HStack {
             Button(action: {
                 Task { await completeTodoItem() }
-            }) {
+            }, label: {
                 Image(systemName: isCompleting ? "largecircle.fill.circle" : "circle")
                     .imageScale(.large)
                     .foregroundColor(.accentColor)
-            }
+            })
             VStack(alignment: .leading) {
                 Text(todoItem.title)
                     .font(.headline)
@@ -48,5 +50,6 @@ struct ElementView: View {
         withAnimation(.easeInOut(duration: 0.2)) {
             todoItem.isDone.toggle()
         }
+        Kovalee.sendEvent(event: .acTodoItemCompleted("app"))
     }
 }

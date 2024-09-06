@@ -1,4 +1,6 @@
 import SwiftUI
+import KovaleeSDK
+import KovaleeFramework
 
 struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
@@ -38,6 +40,9 @@ struct SettingsView: View {
                     }
                 }
             }
+        }
+        .onAppear {
+            Kovalee.sendEvent(event: .pageView(screen: "settings"))
         }
     }
 }

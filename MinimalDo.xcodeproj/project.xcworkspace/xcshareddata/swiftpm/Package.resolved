@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/amplitude/Amplitude-Swift",
       "state" : {
-        "revision" : "67ae99e5c08e8ca708046b6ddd82546f4ce83294",
-        "version" : "1.9.0"
+        "revision" : "255c7eed0f2d4932530ba3b50605bb309552d41d",
+        "version" : "1.9.1"
       }
     },
     {
@@ -177,8 +177,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/RevenueCat/purchases-ios",
       "state" : {
-        "revision" : "a7371c863ef923c34fd340f95a7fe27de8367c76",
-        "version" : "5.3.1"
+        "revision" : "1085af5662b47167c23bfa10ace372342c79452f",
+        "version" : "5.3.2"
       }
     },
     {

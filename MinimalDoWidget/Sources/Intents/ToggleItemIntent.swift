@@ -1,5 +1,7 @@
 import AppIntents
 import SwiftUI
+import KovaleeSDK
+import KovaleeFramework
 
 struct ToggleItemIntent: AppIntent {
     static var title: LocalizedStringResource = "Toggle Task"
@@ -22,6 +24,7 @@ struct ToggleItemIntent: AppIntent {
         let todoManager = TodoManager()
         todoManager.toggleTodo(todoIndex: todoIndex, listIndex: listIndex)
         NotificationCenter.default.post(name: Notification.Name("TodoItemToggled"), object: nil)
+        Kovalee.sendEvent(event: .acTodoItemCompleted("widget"))
         return .result()
     }
 }

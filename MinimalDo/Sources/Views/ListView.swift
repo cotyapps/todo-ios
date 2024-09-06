@@ -1,4 +1,6 @@
 import SwiftUI
+import KovaleeSDK
+import KovaleeFramework
 
 struct ListView: View {
     @Binding var todoList: TodoList
@@ -10,9 +12,9 @@ struct ListView: View {
             ForEach($todoList.todoItems.filter { !$0.wrappedValue.isDone }) { $todoItem in
                 Button(action: {
                     openTodoItem(chosenTodo: todoItem)
-                }) {
+                }, label: {
                     ElementView(todoItem: $todoItem)
-                }
+                })
             }
         }
         .navigationTitle("\(todoList.name)")
@@ -24,6 +26,9 @@ struct ListView: View {
         }
         .sheet(isPresented: $showingAddEditItem) {
             AddEditItemView(todoList: $todoList, editingItem: editingItem)
+        }
+        .onAppear {
+            Kovalee.sendEvent(event: .pageView(screen: "todo_list"))
         }
     }
 

@@ -1,4 +1,6 @@
 import Foundation
+import KovaleeFramework
+import KovaleeSDK
 import UserNotifications
 
 private let notiCenter = UNUserNotificationCenter.current()
@@ -11,9 +13,13 @@ public func isNotificationAllowed() async -> Bool {
 public func askUserAuthorizationForNotification() {
     notiCenter.requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
         if success {
-            print("Permission approved!")
-        } else if let error = error {
-            print(error.localizedDescription)
+            Kovalee.sendEvent(event: .naNotificationActivate)
+        } else {
+            Kovalee.sendEvent(event: .naNotificationDeactivate)
+
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
         }
     }
 }
