@@ -15,9 +15,13 @@ public func askUserAuthorizationForNotification() {
         if success {
             print("Permission approved!")
             Kovalee.sendEvent(Event(name: "na_notification_activate"))
-        } else if let error = error {
-            print(error.localizedDescription)
+        } else {
+            print("Permission denied or request failed")
             Kovalee.sendEvent(Event(name: "na_notification_deactivate"))
+
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
         }
     }
 }
