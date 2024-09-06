@@ -2,8 +2,6 @@ import Foundation
 import KovaleeSDK
 
 enum TrackingEvent {
-    case firstAppOpen
-    case appOpen
     case naAttActivate
     case naAttDeactivate
 
