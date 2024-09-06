@@ -6,9 +6,9 @@ import KovaleeSDK
 func handleTrackingAuthorizationStatus(_ status: ATTrackingManager.AuthorizationStatus) {
     switch status {
     case .authorized:
-        Kovalee.sendEvent(Event(name: "na_att_activate"))
+        Kovalee.sendEvent(event: .naAttActivate)
     case .denied, .restricted:
-        Kovalee.sendEvent(Event(name: "na_att_deactivate"))
+        Kovalee.sendEvent(event: .naAttDeactivate)
     case .notDetermined:
         print("Tracking authorization status is not determined")
     @unknown default:

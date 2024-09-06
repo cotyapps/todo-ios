@@ -52,7 +52,7 @@ struct AddEditItemView: View {
                             updateTodoItem(editingItem: editingItem)
                         } else {
                             await addTodoItem()
-                            Kovalee.sendEvent(Event(name: "ac_todo_item_created"))
+                            Kovalee.sendEvent(event: .acTodoItemCreated)
                         }
                         dismiss()
                     }

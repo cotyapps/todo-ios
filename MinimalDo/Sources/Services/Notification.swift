@@ -14,10 +14,10 @@ public func askUserAuthorizationForNotification() {
     notiCenter.requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
         if success {
             print("Permission approved!")
-            Kovalee.sendEvent(Event(name: "na_notification_activate"))
+            Kovalee.sendEvent(event: .naNotificationActivate)
         } else {
             print("Permission denied or request failed")
-            Kovalee.sendEvent(Event(name: "na_notification_deactivate"))
+            Kovalee.sendEvent(event: .naNotificationDeactivate)
 
             if let error = error {
                 print("Error: \(error.localizedDescription)")

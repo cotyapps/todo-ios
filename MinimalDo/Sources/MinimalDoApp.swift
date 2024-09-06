@@ -16,23 +16,23 @@ struct MinimalDoApp: App {
                     Task {
                         let notificationAllowed = await isNotificationAllowed()
                         if notificationAllowed {
-                            Kovalee.setUserProperty(key: "push_notification_allowed", value: "yes")
+                            Kovalee.setUserProperty(prop: .pushNotificationAllowed(true))
                         } else {
-                            Kovalee.setUserProperty(key: "push_notification_allowed", value: "no")
+                            Kovalee.setUserProperty(prop: .pushNotificationAllowed(false))
                         }
                     }
 
                     if checkIfSubscribe() {
-                        Kovalee.setUserProperty(key: "premium", value: "yes")
+                        Kovalee.setUserProperty(prop: .premium(true))
                     } else {
-                        Kovalee.setUserProperty(key: "premium", value: "no")
+                        Kovalee.setUserProperty(prop: .premium(false))
                     }
 
                     if !hasLaunchedBefore {
-                        Kovalee.sendEvent(Event(name: "first_app_open"))
+                        Kovalee.sendEvent(event: .firstAppOpen)
                         hasLaunchedBefore = true
                     } else {
-                        Kovalee.sendEvent(Event(name: "app_open"))
+                        Kovalee.sendEvent(event: .appOpen)
                     }
 
                     guard ATTrackingManager.trackingAuthorizationStatus == .notDetermined else {

@@ -50,6 +50,6 @@ struct ElementView: View {
         withAnimation(.easeInOut(duration: 0.2)) {
             todoItem.isDone.toggle()
         }
-        Kovalee.sendEvent(Event(name: "ac_todo_item_completed", properties: ["source": "app"]))
+        Kovalee.sendEvent(event: .acTodoItemCompleted("app"))
     }
 }

@@ -24,7 +24,7 @@ struct ToggleItemIntent: AppIntent {
         let todoManager = TodoManager()
         todoManager.toggleTodo(todoIndex: todoIndex, listIndex: listIndex)
         NotificationCenter.default.post(name: Notification.Name("TodoItemToggled"), object: nil)
-        Kovalee.sendEvent(Event(name: "ac_todo_item_completed", properties: ["source": "widget"]))
+        Kovalee.sendEvent(event: .acTodoItemCompleted("widget"))
         return .result()
     }
 }

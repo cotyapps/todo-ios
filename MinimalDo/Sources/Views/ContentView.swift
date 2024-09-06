@@ -89,19 +89,19 @@ struct ContentView: View {
         }
         let newTodoList = TodoList(name: newListName)
         todoManager.addList(newTodoList)
-        Kovalee.sendEvent(Event(name: "ac_todo_list_created"))
+        Kovalee.sendEvent(event: .acTodoListCreated)
     }
     private func editListName(at offsets: IndexSet?, newName: String) {
         guard let offsets = offsets, !newName.isEmpty else {
             return
         }
         todoManager.changeListName(at: offsets, newName: newName)
-        Kovalee.sendEvent(Event(name: "ac_todo_list_edited"))
+        Kovalee.sendEvent(event: .acTodoListEdited)
     }
 
     private func deleteList(at offsets: IndexSet) {
         todoManager.removeList(at: offsets)
-        Kovalee.sendEvent(Event(name: "ac_todo_list_deleted"))
+        Kovalee.sendEvent(event: .acTodoListDeleted)
     }
 }
 
