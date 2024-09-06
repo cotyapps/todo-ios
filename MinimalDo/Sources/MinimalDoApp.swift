@@ -22,19 +22,6 @@ struct MinimalDoApp: App {
                         }
                     }
 
-                    if checkIfSubscribe() {
-                        Kovalee.setUserProperty(prop: .premium(true))
-                    } else {
-                        Kovalee.setUserProperty(prop: .premium(false))
-                    }
-
-                    if !hasLaunchedBefore {
-                        Kovalee.sendEvent(event: .firstAppOpen)
-                        hasLaunchedBefore = true
-                    } else {
-                        Kovalee.sendEvent(event: .appOpen)
-                    }
-
                     guard ATTrackingManager.trackingAuthorizationStatus == .notDetermined else {
                         return
                     }

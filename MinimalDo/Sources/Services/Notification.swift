@@ -13,10 +13,8 @@ public func isNotificationAllowed() async -> Bool {
 public func askUserAuthorizationForNotification() {
     notiCenter.requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
         if success {
-            print("Permission approved!")
             Kovalee.sendEvent(event: .naNotificationActivate)
         } else {
-            print("Permission denied or request failed")
             Kovalee.sendEvent(event: .naNotificationDeactivate)
 
             if let error = error {

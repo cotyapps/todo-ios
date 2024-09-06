@@ -21,10 +21,6 @@ enum TrackingEvent {
 
     var eventName: String {
         switch self {
-        case .firstAppOpen:
-            "first_app_open"
-        case .appOpen:
-            "app_open"
         case .naAttActivate:
             "na_att_activate"
         case .naAttDeactivate:
@@ -62,23 +58,18 @@ enum TrackingEvent {
 
 enum UserProperty {
     case pushNotificationAllowed(Bool)
-    case premium(Bool)
-    
+
     var keyString: String {
         switch self {
         case .pushNotificationAllowed:
             "push_notification_allowed"
-        case .premium:
-            "premium"
         }
     }
-    
+
     var value: String {
         switch self {
         case let .pushNotificationAllowed(notiAllowed):
             notiAllowed ? "yes" : "no"
-        case let .premium(isPremium):
-            isPremium ? "yes" : "no"
         }
     }
 }
@@ -87,7 +78,7 @@ extension Kovalee {
     static func sendEvent(event: TrackingEvent) {
         Self.sendEvent(withName: event.eventName, andProperties: event.properties)
     }
-    
+
     static func setUserProperty(prop: UserProperty) {
         Self.setUserProperty(key: prop.keyString, value: prop.value)
     }
