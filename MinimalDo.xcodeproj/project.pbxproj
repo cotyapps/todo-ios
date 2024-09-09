@@ -16,6 +16,7 @@
 		366ECDAC2C89FBD500F7C5D1 /* KovaleePurchases in Frameworks */ = {isa = PBXBuildFile; productRef = 366ECDAB2C89FBD500F7C5D1 /* KovaleePurchases */; };
 		366ECDAE2C8AF41C00F7C5D1 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366ECDAD2C8AF41C00F7C5D1 /* TrackingEvent.swift */; };
 		366ECDB32C8AFFD700F7C5D1 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366ECDAD2C8AF41C00F7C5D1 /* TrackingEvent.swift */; };
+		366ECDB92C8F41A600F7C5D1 /* ABTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366ECDB82C8F41A600F7C5D1 /* ABTest.swift */; };
 		366ECDB52C8F264600F7C5D1 /* StoreKit.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 366ECDB42C8F264600F7C5D1 /* StoreKit.storekit */; };
 		366ECDB72C8F265E00F7C5D1 /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 366ECDB62C8F265E00F7C5D1 /* StoreKitTestCertificate.cer */; };
 		36E9BA422C738B3600389DCB /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BA412C738B3600389DCB /* TodoItem.swift */; };
@@ -87,6 +88,7 @@
 		366ECD9E2C89BF3300F7C5D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		366ECDA22C89ECCB00F7C5D1 /* UserTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTracking.swift; sourceTree = "<group>"; };
 		366ECDAD2C8AF41C00F7C5D1 /* TrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingEvent.swift; sourceTree = "<group>"; };
+		366ECDB82C8F41A600F7C5D1 /* ABTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABTest.swift; sourceTree = "<group>"; };
 		366ECDB42C8F264600F7C5D1 /* StoreKit.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = StoreKit.storekit; sourceTree = "<group>"; };
 		366ECDB62C8F265E00F7C5D1 /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreKitTestCertificate.cer; sourceTree = "<group>"; };
 		36E9BA412C738B3600389DCB /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				36E9BA932C807E8900389DCB /* Notification.swift */,
 				36E9BA972C81BF1E00389DCB /* Subscription.swift */,
 				366ECDA22C89ECCB00F7C5D1 /* UserTracking.swift */,
+				366ECDB82C8F41A600F7C5D1 /* ABTest.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -516,6 +519,7 @@
 				36E9BAD62C88563600389DCB /* SelectListIntent.swift in Sources */,
 				36E9BA922C7DD6BD00389DCB /* Storage.swift in Sources */,
 				36E9BA962C80C74A00389DCB /* PayWallView.swift in Sources */,
+				366ECDB92C8F41A600F7C5D1 /* ABTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

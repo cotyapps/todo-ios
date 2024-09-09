@@ -10,7 +10,7 @@ struct ContentView: View {
     @State private var chosenList: IndexSet?
     @State private var displayPaywall = false
     @State private var showingSettings = false
-    @State private var currentABTest: String?
+    @StateObject private var abTestManager = ABTestManager.shared
 
     var body: some View {
         NavigationStack {
@@ -87,7 +87,7 @@ struct ContentView: View {
             Kovalee.sendEvent(event: .pageView(screen: "home"))
         }
         .task {
-            currentABTest = await Kovalee.abTestValue() ?? "0000"
+            await abTestManager.fetchABTestValue()
         }
     }
 
