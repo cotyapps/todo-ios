@@ -16,6 +16,8 @@
 		366ECDAC2C89FBD500F7C5D1 /* KovaleePurchases in Frameworks */ = {isa = PBXBuildFile; productRef = 366ECDAB2C89FBD500F7C5D1 /* KovaleePurchases */; };
 		366ECDAE2C8AF41C00F7C5D1 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366ECDAD2C8AF41C00F7C5D1 /* TrackingEvent.swift */; };
 		366ECDB32C8AFFD700F7C5D1 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366ECDAD2C8AF41C00F7C5D1 /* TrackingEvent.swift */; };
+		366ECDB52C8F264600F7C5D1 /* StoreKit.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 366ECDB42C8F264600F7C5D1 /* StoreKit.storekit */; };
+		366ECDB72C8F265E00F7C5D1 /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 366ECDB62C8F265E00F7C5D1 /* StoreKitTestCertificate.cer */; };
 		36E9BA422C738B3600389DCB /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BA412C738B3600389DCB /* TodoItem.swift */; };
 		36E9BA442C738D4E00389DCB /* TodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BA432C738D4E00389DCB /* TodoList.swift */; };
 		36E9BA462C738E8700389DCB /* TodoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BA452C738E8700389DCB /* TodoManager.swift */; };
@@ -85,6 +87,8 @@
 		366ECD9E2C89BF3300F7C5D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		366ECDA22C89ECCB00F7C5D1 /* UserTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTracking.swift; sourceTree = "<group>"; };
 		366ECDAD2C8AF41C00F7C5D1 /* TrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingEvent.swift; sourceTree = "<group>"; };
+		366ECDB42C8F264600F7C5D1 /* StoreKit.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = StoreKit.storekit; sourceTree = "<group>"; };
+		366ECDB62C8F265E00F7C5D1 /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreKitTestCertificate.cer; sourceTree = "<group>"; };
 		36E9BA412C738B3600389DCB /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
 		36E9BA432C738D4E00389DCB /* TodoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoList.swift; sourceTree = "<group>"; };
 		36E9BA452C738E8700389DCB /* TodoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoManager.swift; sourceTree = "<group>"; };
@@ -281,6 +285,8 @@
 			children = (
 				418286322C627B2C0022E621 /* Preview Content */,
 				418286302C627B2C0022E621 /* Assets.xcassets */,
+				366ECDB42C8F264600F7C5D1 /* StoreKit.storekit */,
+				366ECDB62C8F265E00F7C5D1 /* StoreKitTestCertificate.cer */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -417,10 +423,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				366ECDB52C8F264600F7C5D1 /* StoreKit.storekit in Resources */,
 				418286342C627B2C0022E621 /* Preview Assets.xcassets in Resources */,
 				418286312C627B2C0022E621 /* Assets.xcassets in Resources */,
 				50145AB91E37453A4EA7C3D3 /* KovaleeKeys.json in Resources */,
 				9A20D7123EED46AE8357866E /* GoogleService-Info.plist in Resources */,
+				366ECDB72C8F265E00F7C5D1 /* StoreKitTestCertificate.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

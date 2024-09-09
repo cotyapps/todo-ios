@@ -34,3 +34,13 @@ public func getPackageDurationString(duration: Int) -> String? {
         return nil
     }
 }
+
+enum PurchaseState {
+    case idle
+    case loading
+}
+
+struct SubscriptionErrorWrapper: Identifiable {
+    let id = UUID()
+    let error: String
+}

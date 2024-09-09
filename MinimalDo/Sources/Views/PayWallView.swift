@@ -7,73 +7,96 @@ struct PayWallView: View {
     @Binding var displayPaywall: Bool
     @State private var offeringPackages: [Package] = []
     @State private var selectedPackageIndex: Int?
+    @State private var purchaseState: PurchaseState = .idle
+    @State private var errorMessage: String?
 
     var body: some View {
         NavigationView {
-            VStack {
-                Spacer()
-                HStack {
-                    Text("MinimalDo")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(.black)
-                    Text("PRO")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(.blue)
-                }.padding(.bottom, 50)
-                Spacer()
-                VStack(spacing: 15) {
-                    ForEach(Array(offeringPackages.enumerated()), id: \.element.identifier) { index, package in
-                        PayWallButton(
-                            isSelected: Binding(
-                                get: { selectedPackageIndex == index },
-                                set: { _ in selectedPackageIndex = index }
-                            ),
-                            package: package
-                        )
-                    }
-                }
-                .padding(.bottom, 40)
-                .padding(.horizontal, 20)
+            ZStack {
                 VStack {
-                    Button(action: {
-                        // Implement purchase action
-                    }, label: {
-                        Text("Continue")
-                            .font(.headline)
-                            .bold()
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.blue)
-                            .cornerRadius(100)
-                    })
+                    Spacer()
+                    HStack {
+                        Text("MinimalDo")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundColor(.black)
+                        Text("PRO")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundColor(.blue)
+                    }.padding(.bottom, 50)
+                    Spacer()
+                    VStack(spacing: 15) {
+                        ForEach(Array(offeringPackages.enumerated()), id: \.element.identifier) { index, package in
+                            PayWallButton(
+                                isSelected: Binding(
+                                    get: { selectedPackageIndex == index },
+                                    set: { _ in selectedPackageIndex = index }
+                                ),
+                                package: package
+                            )
+                        }
+                    }
+                    .padding(.bottom, 40)
                     .padding(.horizontal, 20)
-                    .padding(.bottom, 10)
-                    Button(action: {
-                        // Implement restore action
-                    }, label: {
-                        Text("Restore")
-                            .font(.headline)
-                            .bold()
-                            .foregroundColor(.gray)
-                    })
+                    VStack {
+                        Button(action: {
+                            if let index = selectedPackageIndex, index < offeringPackages.count {
+                                Task {
+                                    await purchase(package: offeringPackages[index])
+                                }
+                            }
+                        }, label: {
+                            Text("Continue")
+                                .font(.headline)
+                                .bold()
+                                .foregroundColor(.white)
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(Color.blue)
+                                .cornerRadius(100)
+                        })
+                        .padding(.horizontal, 20)
+                        .padding(.bottom, 10)
+                        .disabled(purchaseState == .loading)
+                        Button(action: {
+                            // Implement restore action
+                        }, label: {
+                            Text("Restore")
+                                .font(.headline)
+                                .bold()
+                                .foregroundColor(.gray)
+                        })
+                        .disabled(purchaseState == .loading)
+                    }
+                    .padding(.bottom, 20)
                 }
-                .padding(.bottom, 20)
-            }
-            .edgesIgnoringSafeArea(.all)
-            .toolbar {
-                Button("Close") {
-                    displayPaywall.toggle()
+                .edgesIgnoringSafeArea(.all)
+                .toolbar {
+                    Button("Close") {
+                        displayPaywall.toggle()
+                    }
+                    .font(.headline)
+                    .foregroundColor(.gray)
                 }
-                .font(.headline)
-                .foregroundColor(.gray)
+                if purchaseState == .loading {
+                    Color.black.opacity(0.4)
+                        .edgesIgnoringSafeArea(.all)
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                        .scaleEffect(2)
+                }
             }
         }
         .onAppear {
             Kovalee.sendEvent(event: TaggingPlanLiteEvent.pageViewPaywall(source: "in_content"))
             retrieveOffering()
+        }
+        .alert(item: Binding(
+            get: { errorMessage.map { SubscriptionErrorWrapper(error: $0) } },
+            set: { errorMessage = $0?.error }
+        )) { errorWrapper in
+            Alert(title: Text("Error"), message: Text(errorWrapper.error), dismissButton: .default(Text("OK")))
         }
     }
 
@@ -88,6 +111,28 @@ struct PayWallView: View {
                 selectedPackageIndex = 0
             }
         }
+    }
+
+    @MainActor
+    func purchase(package: Package) async {
+        purchaseState = .loading
+        do {
+            guard let resultData = try await Kovalee.purchase(package: package, fromSource: "paywall") else {
+                throw NSError(domain: "PayWallError", code: 1, userInfo: [NSLocalizedDescriptionKey: "Purchase failed: No result data"])
+            }
+            if resultData.userCancelled {
+                purchaseState = .idle
+                return
+            }
+            let isUserPremium = !resultData.customerInfo.activeSubscriptions.isEmpty
+            if isUserPremium {
+                displayPaywall = false
+            }
+        }
+        catch {
+            errorMessage = "Purchase failed: \(error.localizedDescription)"
+        }
+        purchaseState = .idle
     }
 }
 
