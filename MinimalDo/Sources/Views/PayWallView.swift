@@ -60,7 +60,9 @@ struct PayWallView: View {
                         .padding(.bottom, 10)
                         .disabled(purchaseState == .loading)
                         Button(action: {
-                            // Implement restore action
+                            Task {
+                                await restorePurchases()
+                            }
                         }, label: {
                             Text("Restore")
                                 .font(.headline)
@@ -131,6 +133,25 @@ struct PayWallView: View {
         }
         catch {
             errorMessage = "Purchase failed: \(error.localizedDescription)"
+        }
+        purchaseState = .idle
+    }
+
+    @MainActor
+    func restorePurchases() async {
+        purchaseState = .loading
+        do {
+            guard let data = try await Kovalee.restorePurchases(fromSource: "paywall") else {
+                throw NSError(domain: "PayWallError", code: 2, userInfo: [NSLocalizedDescriptionKey: "Restore failed"])
+            }
+            let isUserPremium = !data.activeSubscriptions.isEmpty
+            if isUserPremium {
+                displayPaywall = false
+            } else {
+                errorMessage = "No active subscriptions found."
+            }
+        } catch {
+            errorMessage = "Restore failed: \(error.localizedDescription)"
         }
         purchaseState = .idle
     }
