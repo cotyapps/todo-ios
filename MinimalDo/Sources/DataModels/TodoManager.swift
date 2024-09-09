@@ -41,8 +41,14 @@ class TodoManager {
         storageService.saveItems(self.lists)
     }
 
-    func canAddList() -> Bool {
-        return countLists() < 3 || checkIfSubscribe()
+    func canAddList() async -> Bool {
+        do {
+            let isSubscribed = try await checkIfSubscribe()
+            return countLists() < 3 || isSubscribed
+        } catch {
+            print("Error checking subscription: \(error)")
+            return false
+        }
     }
 
     func addList(_ list: TodoList) {

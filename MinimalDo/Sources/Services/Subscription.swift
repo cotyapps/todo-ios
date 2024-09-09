@@ -1,18 +1,19 @@
 import Foundation
+import KovaleePurchases
+import KovaleeSDK
 
-public enum SubscriptionStatus {
-    case weekly
-    case monthly
-    case yearly
-    case non
+public func checkIfSubscribe() async throws -> Bool {
+    do {
+        if let customerInfo = try await Kovalee.customerInfo() {
+            return !customerInfo.activeSubscriptions.isEmpty
+        } else {
+            return false
+        }
+    } catch {
+        print("Error checking subscription: \(error)")
+        return false
+    }
 }
-
-public var subscriptionStatus = SubscriptionStatus.non
-
-public func checkIfSubscribe() -> Bool {
-    return subscriptionStatus != SubscriptionStatus.non
-}
-
 public func getPackageTitle(identifier: String) -> String? {
     switch identifier {
     case "$rc_monthly":

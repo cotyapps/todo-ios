@@ -40,12 +40,15 @@ struct ContentView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     HStack {
                         Button("New list", systemImage: "plus") {
-                            newListName = ""
-                            chosenList = nil
-                            if !todoManager.canAddList() {
-                                displayPaywall.toggle()
-                            } else {
-                                showingListAlert = true
+                            Task {
+                                newListName = ""
+                                chosenList = nil
+                                let canAdd = await todoManager.canAddList()
+                                if !canAdd {
+                                    displayPaywall = true
+                                } else {
+                                    showingListAlert = true
+                                }
                             }
                         }
 
