@@ -7,6 +7,7 @@ struct SettingsView: View {
     @StateObject private var subscriptionManager = SubscriptionManager()
     @State private var isPremium: Bool = false
     @State private var appVersion: String = ""
+    @ObservedObject private var abTestManager = ABTestManager.shared
 
     var body: some View {
         NavigationView {
@@ -30,7 +31,7 @@ struct SettingsView: View {
                     HStack {
                         Text("AB Test Variant")
                         Spacer()
-                        Text("0001").foregroundColor(.gray)
+                        Text(abTestManager.getABTestValue()).foregroundColor(.gray)
                     }
                 }
             }

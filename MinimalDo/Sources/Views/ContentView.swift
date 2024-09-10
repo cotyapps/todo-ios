@@ -1,6 +1,7 @@
 import KovaleeSDK
 import KovaleeFramework
 import SwiftUI
+import KovaleeRemoteConfig
 
 struct ContentView: View {
     @State private var todoManager = TodoManager()
@@ -9,6 +10,7 @@ struct ContentView: View {
     @State private var chosenList: IndexSet?
     @State private var displayPaywall = false
     @State private var showingSettings = false
+    @StateObject private var abTestManager = ABTestManager.shared
 
     var body: some View {
         NavigationStack {
@@ -83,6 +85,9 @@ struct ContentView: View {
         }
         .onAppear {
             Kovalee.sendEvent(event: .pageView(screen: "home"))
+        }
+        .task {
+            await abTestManager.fetchABTestValue()
         }
     }
 
