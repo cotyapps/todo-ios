@@ -5,11 +5,8 @@ import KovaleePurchases
 
 struct PayWallView: View {
     @Binding var displayPaywall: Bool
-    @State private var offeringPackages: [Package] = []
-    @State private var selectedPackageIndex: Int?
-    @State private var purchaseState: PurchaseState = .idle
-    @State private var errorMessage: String?
-
+    @StateObject private var subscriptionManager = SubscriptionManager()
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -27,13 +24,15 @@ struct PayWallView: View {
                     }.padding(.bottom, 50)
                     Spacer()
                     VStack(spacing: 15) {
-                        ForEach(Array(offeringPackages.enumerated()), id: \.element.identifier) { index, package in
+                        ForEach(Array(subscriptionManager.offeringPackages.enumerated()), id: \.element.identifier) { index, package in
                             PayWallButton(
                                 isSelected: Binding(
-                                    get: { selectedPackageIndex == index },
-                                    set: { _ in selectedPackageIndex = index }
+                                    get: { subscriptionManager.selectedPackageIndex == index },
+                                    set: { _ in subscriptionManager.selectedPackageIndex = index }
                                 ),
-                                package: package
+                                package: package,
+                                getPackageTitle: subscriptionManager.getPackageTitle,
+                                getPackageDurationString: subscriptionManager.getPackageDurationString
                             )
                         }
                     }
@@ -41,9 +40,13 @@ struct PayWallView: View {
                     .padding(.horizontal, 20)
                     VStack {
                         Button(action: {
-                            if let index = selectedPackageIndex, index < offeringPackages.count {
+                            if let index = subscriptionManager.selectedPackageIndex,
+                               index < subscriptionManager.offeringPackages.count {
                                 Task {
-                                    await purchase(package: offeringPackages[index])
+                                    let success = await subscriptionManager.purchase(package: subscriptionManager.offeringPackages[index])
+                                    if success {
+                                        displayPaywall = false
+                                    }
                                 }
                             }
                         }, label: {
@@ -58,10 +61,13 @@ struct PayWallView: View {
                         })
                         .padding(.horizontal, 20)
                         .padding(.bottom, 10)
-                        .disabled(purchaseState == .loading)
+                        .disabled(subscriptionManager.purchaseState == .loading)
                         Button(action: {
                             Task {
-                                await restorePurchases()
+                                let success = await subscriptionManager.restorePurchases()
+                                if success {
+                                    displayPaywall = false
+                                }
                             }
                         }, label: {
                             Text("Restore")
@@ -69,7 +75,7 @@ struct PayWallView: View {
                                 .bold()
                                 .foregroundColor(.gray)
                         })
-                        .disabled(purchaseState == .loading)
+                        .disabled(subscriptionManager.purchaseState == .loading)
                     }
                     .padding(.bottom, 20)
                 }
@@ -81,7 +87,7 @@ struct PayWallView: View {
                     .font(.headline)
                     .foregroundColor(.gray)
                 }
-                if purchaseState == .loading {
+                if subscriptionManager.purchaseState == .loading {
                     Color.black.opacity(0.4)
                         .edgesIgnoringSafeArea(.all)
                     ProgressView()
@@ -92,74 +98,22 @@ struct PayWallView: View {
         }
         .onAppear {
             Kovalee.sendEvent(event: TaggingPlanLiteEvent.pageViewPaywall(source: "in_content"))
-            retrieveOffering()
+            subscriptionManager.retrieveOffering()
         }
         .alert(item: Binding(
-            get: { errorMessage.map { SubscriptionErrorWrapper(error: $0) } },
-            set: { errorMessage = $0?.error }
+            get: { subscriptionManager.errorMessage.map { SubscriptionErrorWrapper(error: $0) } },
+            set: { subscriptionManager.errorMessage = $0?.error }
         )) { errorWrapper in
             Alert(title: Text("Error"), message: Text(errorWrapper.error), dismissButton: .default(Text("OK")))
         }
-    }
-
-    @MainActor
-    func retrieveOffering() {
-        Task {
-            guard let offering = try? await Kovalee.fetchCurrentOffering() else {
-                return
-            }
-            offeringPackages = offering.availablePackages
-            if !offeringPackages.isEmpty {
-                selectedPackageIndex = 0
-            }
-        }
-    }
-
-    @MainActor
-    func purchase(package: Package) async {
-        purchaseState = .loading
-        do {
-            guard let resultData = try await Kovalee.purchase(package: package, fromSource: "paywall") else {
-                throw NSError(domain: "PayWallError", code: 1, userInfo: [NSLocalizedDescriptionKey: "Purchase failed: No result data"])
-            }
-            if resultData.userCancelled {
-                purchaseState = .idle
-                return
-            }
-            let isUserPremium = !resultData.customerInfo.activeSubscriptions.isEmpty
-            if isUserPremium {
-                displayPaywall = false
-            }
-        }
-        catch {
-            errorMessage = "Purchase failed: \(error.localizedDescription)"
-        }
-        purchaseState = .idle
-    }
-
-    @MainActor
-    func restorePurchases() async {
-        purchaseState = .loading
-        do {
-            guard let data = try await Kovalee.restorePurchases(fromSource: "paywall") else {
-                throw NSError(domain: "PayWallError", code: 2, userInfo: [NSLocalizedDescriptionKey: "Restore failed"])
-            }
-            let isUserPremium = !data.activeSubscriptions.isEmpty
-            if isUserPremium {
-                displayPaywall = false
-            } else {
-                errorMessage = "No active subscriptions found."
-            }
-        } catch {
-            errorMessage = "Restore failed: \(error.localizedDescription)"
-        }
-        purchaseState = .idle
     }
 }
 
 struct PayWallButton: View {
     @Binding var isSelected: Bool
     let package: Package
+    let getPackageTitle: (String) -> String?
+    let getPackageDurationString: (Int) -> String?
 
     var body: some View {
         Button(action: {
@@ -167,11 +121,11 @@ struct PayWallButton: View {
         }, label: {
             HStack {
                 VStack(alignment: .leading) {
-                    Text(getPackageTitle(identifier: package.identifier) ?? "")
+                    Text(getPackageTitle(package.identifier) ?? "")
                         .font(.subheadline)
                         .fontWeight(.semibold)
                         .foregroundStyle(.black)
-                    Text("\(package.localizedPriceString) / \(getPackageDurationString(duration: package.getDuration()) ?? "")")
+                    Text("\(package.localizedPriceString) / \(getPackageDurationString(package.getDuration()) ?? "")")
                         .font(.title3)
                         .fontWeight(.semibold)
                         .foregroundColor(.black)
