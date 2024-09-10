@@ -4,6 +4,9 @@ import KovaleeFramework
 
 struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
+    @StateObject private var subscriptionManager = SubscriptionManager()
+    @State private var isPremium: Bool = false
+    @State private var appVersion: String = ""
 
     var body: some View {
         NavigationView {
@@ -12,17 +15,17 @@ struct SettingsView: View {
                     HStack {
                         Text("Premium")
                         Spacer()
-                        Text("No").foregroundColor(.gray)
+                        Text(isPremium ? "Yes" : "No").foregroundColor(.gray)
                     }
                     HStack {
                         Text("App Version")
                         Spacer()
-                        Text("1.0.0").foregroundColor(.gray)
+                        Text(appVersion).foregroundColor(.gray)
                     }
                     HStack {
                         Text("SDK Version")
                         Spacer()
-                        Text("1.10.6").foregroundColor(.gray)
+                        Text(SDK_VERSION).foregroundColor(.gray)
                     }
                     HStack {
                         Text("AB Test Variant")
@@ -43,6 +46,21 @@ struct SettingsView: View {
         }
         .onAppear {
             Kovalee.sendEvent(event: .pageView(screen: "settings"))
+            Task {
+                await checkSubscriptionStatus()
+            }
+            fetchAppVersion()
+        }
+    }
+    private func checkSubscriptionStatus() async {
+        isPremium = await subscriptionManager.checkIfSubscribed()
+    }
+    
+    private func fetchAppVersion() {
+        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            appVersion = version
+        } else {
+            appVersion = "Unknown"
         }
     }
 }

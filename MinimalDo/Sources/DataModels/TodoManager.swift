@@ -11,11 +11,16 @@ class TodoManager {
     }
 
     private let storageService: StorageService
-    private let userDefaults = UserDefaults.standard
+    private let userDefaults: UserDefaults
+    private let subscriptionManager: SubscriptionManager
     private let firstLaunchKey = "isFirstLaunch"
 
-    init(storageService: StorageService = JSONStorageService()) {
+    init(storageService: StorageService = JSONStorageService(),
+         userDefaults: UserDefaults = .standard,
+         subscriptionManager: SubscriptionManager = SubscriptionManager()) {
         self.storageService = storageService
+        self.userDefaults = userDefaults
+        self.subscriptionManager = subscriptionManager
         if isFirstLaunch() {
             lists = TodoList.mockTodoLists
             saveList()
@@ -41,8 +46,11 @@ class TodoManager {
         storageService.saveItems(self.lists)
     }
 
-    func canAddList() -> Bool {
-        return countLists() < 3 || checkIfSubscribe()
+    func canAddList() async -> Bool {
+        if countLists() < 3 {
+            return true
+        }
+        return await subscriptionManager.checkIfSubscribed()
     }
 
     func addList(_ list: TodoList) {
