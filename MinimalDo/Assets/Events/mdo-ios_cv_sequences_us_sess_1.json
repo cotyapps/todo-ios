@@ -1,0 +1,20 @@
+[
+  {
+    "ac_content_click__todo__0|page_view__todo_list|page_view__home|ac_content_click__todo__0|page_view__todo_list": {
+      "cv": 5
+    },
+    "page_view__todo_list|page_view__home|ac_todo_item_created|page_view_paywall": {
+      "cv": 6
+    },
+    "page_view__todo_list|page_view__home|ac_todo_item_created|page_view_paywall|payment_start__30": {
+      "cv": 7
+    },
+    "page_view__todo_list|page_view__home|ac_todo_item_created|page_view_paywall|payment_start__365": {
+      "cv": 8
+    },
+    "page_view__home|ac_todo_item_created|page_view_paywall|payment_start__365|payment_cancel": {
+      "cv": 9
+    }
+  },
+  "first_session"
+]

@@ -1,0 +1,16 @@
+{
+  "page_view__home": true,
+  "page_view__todo_list": true,
+  "page_view_paywall": true,
+  "ac_todo_item_created": true,
+  "payment_cancel": true,
+  "payment_failure__30": true,
+  "payment_failure__365": true,
+  "payment_finish__30": true,
+  "payment_finish__365": true,
+  "payment_restore": true,
+  "payment_restore_fail": true,
+  "payment_start__30": true,
+  "payment_start__365": true,
+  "ac_content_click__todo__0": true
+}
