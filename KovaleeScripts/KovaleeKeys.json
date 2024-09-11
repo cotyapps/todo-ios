@@ -1,6 +1,6 @@
 {
   "app_code": "mdo",
-  "liteVersion": true,
+  "liteVersion": false,
   "adjust": "rupu8ksd2hvk",
   "amplitude": {
     "prodSDKId": "d37fbb7e049b77d53c83ee37b9c18a0a",

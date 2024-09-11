@@ -37,6 +37,9 @@ struct ContentView: View {
                     }
                 }
             }
+			.onAppear {
+				Kovalee.sendEvent(event: .pageView(screen: "home"))
+			}
             .navigationTitle("Minimal Todo")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -82,9 +85,6 @@ struct ContentView: View {
         }
         .onReceive(NotificationCenter.default.publisher(for: Notification.Name("TodoItemToggled"))) { _ in
             todoManager.loadList()
-        }
-        .onAppear {
-            Kovalee.sendEvent(event: .pageView(screen: "home"))
         }
         .task {
             await abTestManager.fetchABTestValue()

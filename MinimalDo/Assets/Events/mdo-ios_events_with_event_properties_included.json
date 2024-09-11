@@ -12,5 +12,5 @@
   "payment_restore_fail": true,
   "payment_start__30": true,
   "payment_start__365": true,
-  "ac_content_click__todo__0": true
+  "ac_todo_item_completed": true
 }

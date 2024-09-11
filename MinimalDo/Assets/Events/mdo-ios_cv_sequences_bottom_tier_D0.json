@@ -1,6 +1,6 @@
 [
   {
-    "ac_content_click__todo__0|page_view__todo_list|page_view__home|ac_content_click__todo__0|page_view__todo_list": {
+	"page_view__todo_list|ac_todo_item_completed|page_view__home|page_view__todo_list": {
       "cv": 49
     },
     "page_view__todo_list|page_view__home|ac_todo_item_created|page_view_paywall": {
